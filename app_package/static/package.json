@@ -1,0 +1,17 @@
+{
+  "name": "static",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile_sass": "sass --watch scss:css"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.63.3"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.0"
+  }
+}

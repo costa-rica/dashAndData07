@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='/css/main.css') }}">
+
+
+
+
+
+  <link rel="icon"  href="/static/images/favicon.ico">
+  <title>Dash and Data</title>
+</head>
+<body id="body">
+
+  <div class="navbar_super">
+
+    <div class="navbar_custom  bg-primary " id="nav_section">
+      
+      <div class="nav_left">
+
+        <a class="nav_left_a_href" href="{{ url_for('bp_main.home') }}">
+        <img class="ws_logo_small" alt="API Tester PNG - small"
+          src="{{ url_for('static', filename='images/DashDataV3_calibri_teal.png') }}">
+        </a>
+
+      </div><!-- nav_left -->
+      
+
+
+      <div class="nav_center">
+        
+
+         
+          <div class="page_title_large">
+            <h1>NHTSA Data Dashboard </h1>
+          </div><!-- page_title -->
+          
+
+        
+
+        {% if current_user %}
+        {{ current_user.username }}
+        {% endif %}<!-- if current_user -->
+      </div><!-- nav_center -->
+
+
+
+
+
+
+
+      <div class="nav_right">
+        <img class="nav_menu" id="nav_menu" src="{{ url_for('static', filename='images/white-hamburger-menu-icon-24.png') }}"
+        alt="Open Navigation">
+
+        <nav>
+          <div class="nav_exit_div">
+            <img id="nav_exit" class="nav_exit" src="{{ url_for('static', filename='images/exit.svg') }}" alt="Close Navigation">
+          </div>
+          
+
+          <ul class="primary-nav ul_primary" id="nav_horizontal_list">
+            <br>
+  
+            {% if current_user.id %}
+            <li class="nav-item li_primary"><a class="nav-link" href="{{ url_for('bp_users.logout') }}">Logout</a></li>
+            {% else %}
+            <li class="nav-item li_primary"><a class="nav-link" href="{{ url_for('bp_users.login') }}">Login</a></li>
+            {% endif %}<!-- if current_user.id -->
+            {% if current_user.admin %}
+            <li class="nav-item li_primary"><a class="nav-link" href="{{ url_for('bp_admin.admin_page') }}">Admin Page</a></li>
+            {% endif %}<!-- if current_user.admin -->
+  
+  
+  
+  
+  
+          </ul>
+        
+
+          </nav>
+
+      </div>
+
+
+
+
+    </div><!-- navbar_custom-->
+</div><!-- navbar_super -->
+
+
+
+  <div class="flash_custom_parent">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+
+    <div class="alert alert-{{ category }} alert_custom keep_line_break" id="div_flash">
+      <i class="close icon"></i>
+
+      {{ message }}
+      <div class="close_right">
+        <input type="button" value=&#10006 onclick="removeFlash()" class="btn btn-secondary btn_custom02">
+      </div>
+
+    </div>
+    {% endfor %}<!-- for category, message in messages -->
+    {% endif %}<!-- if messages -->
+    {% endwith %}<!-- with messages = get_flashed_messages(with_categories=true) -->
+
+  </div>
+
+  {% block main %}{% endblock %}
+  <script>
+    const mobileBtn = document.getElementById('nav_menu')
+    nav = document.querySelector('nav')
+    mobileBtnExit = document.getElementById('nav_exit');
+  
+    mobileBtn.addEventListener('click', () => {
+      nav.classList.add('btn_menu');
+    })
+  
+    mobileBtnExit.addEventListener('click', () => {
+      nav.classList.remove('btn_menu');
+    })
+  </script>
+
+
+  <!-- Remove flash on click -->
+  <script>
+    function removeFlash() {
+      const element = document.getElementById('div_flash');
+      element.remove();
+    }
+  </script>
+
+  <!-- assign navbar height to --nav-height -->
+  <script>document.documentElement.style.setProperty('--nav-height', `${document.getElementById("nav_section").offsetHeight}px`);</script>
+
+</body>
+
+
+<footer class="footer" id="footer_custom">
+  <div class=footer_right>
+    
+    <div class="footer_link_item contact_nick" >nick@dashanddata.com</div>
+    <!-- <a class="footer_link_item" href="{{ url_for('bp_main.home') }}">Privacy</a> -->
+  </div>
+</footer>
+</html>

@@ -1,0 +1,243 @@
+@use "custom";
+
+/* Flash */
+.flash_custom_parent {
+  position: relative;
+
+  .alert_custom {
+    position: absolute;
+    top: var(--nav-height);
+    width: 100%;
+    // background-color: ;
+
+    .close_right {
+      float: right;
+    }
+  }
+  .keep_line_break{
+    white-space: pre-line;
+  }
+}
+
+
+/* Navbar */
+.navbar_super {
+  position: fixed; // <--HERE
+  z-index: 1; // <--HERE
+
+  // padding-top: 0;
+  // margin-top:0;
+  .navbar_custom {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    height: 5rem;
+    gap: 1rem;
+
+    /* Navbar Left */
+    .nav_left {
+      // display: flex;
+      // justify-content: center;
+      // align-items: center;
+      min-width: 0; // very important to keep other divs from being kicked out of screen on small screen ... max-width not set
+      max-width: 12rem;
+
+    }
+    .nav_left_a_href{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width:100%;
+    }
+    .ws_logo_big {
+      display: none;
+    }
+
+    .ws_logo_small {
+      min-width: auto;
+      height: 75%;
+      // max-width: 100%;
+      // border-radius: 1rem;
+      
+    }
+
+    /* Navbar Center */
+    .nav_center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // background-color: green;
+      flex-wrap: wrap;
+      // width:100%;
+    }
+
+
+    .page_title_large{
+      display:none
+    }
+
+    /* Navbar Right */
+    .nav_right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    nav.btn_menu {
+      display: block;
+    }
+
+    .nav_menu {
+      cursor: pointer;
+      height: 5rem;
+    }
+    .nav_exit_div {
+      display: flex;
+      justify-content: end;
+      padding: 1rem 1rem 0 0;
+    }
+
+    nav {
+      display: none;
+    }
+
+    nav {
+      position: fixed;
+      z-index: 1;
+      width: 50%;
+      right: 0;
+      top: 0;
+      background: var(--bs-gray-500);
+      height: 100%;
+      font-size: 1.25rem;
+
+      ul {
+        list-style-type: none;
+        padding: 2rem 1rem 0 0;
+
+        li {
+          a {
+            text-decoration: none;
+            display: block;
+            padding: .5em 10px .5em 0;
+
+            text-align: right;
+            cursor: pointer;
+
+            &:hover {
+              font-weight: bold;
+            }
+          }
+        }
+      }
+
+      // .special_small{
+      //     font-size: 1.25rem;
+      // }
+      .dropdown-menu {
+        background-color: var(--bs-gray-700);
+        // background-color: green;
+        min-width: 100%;
+        // width:95%;
+        // margin-right:5rem;
+
+        .dropdown-item {
+          color: var(--bs-gray-100);
+          text-align: center;
+          // font-size: 2rem;
+        }
+
+      }
+
+      // .mobile-menu-exit{
+      //     float: right;
+      //     margin: .5em;
+      //     cursor: pointer;
+      // }
+      .dropdown {
+        background-color: none;
+
+        &:hover {
+          background-color: none;
+        }
+      }
+
+      .btn_list_div {
+        width: 100%;
+        display: flex;
+        justify-content: end;
+      }
+
+      .btn_list_div_sub {
+        width: calc(100% - 2rem);
+      }
+
+      .custom_post_btn {
+        background-color: var(--bs-blue);
+        width: 100%;
+      }
+
+      .custom_delete_btn {
+        background-color: #df382c;
+        width: 100%;
+      }
+      .looks_like_a_button{
+        text-align: center;
+      }
+    }
+  }
+}
+
+
+/* Footer */
+.footer {
+  margin-top: auto;
+  padding: 1rem 1rem var(--nav-height) 3rem;
+  background-color: var(--bs-gray-200);
+
+  // height: auto !important;
+  // height:auto;
+  // flex-grow: 2;
+  // min-height: 100%;
+  .footer_right {
+
+    // display:flex;
+    // justify-content: end;
+    // flex-wrap:wrap;
+    .footer_link_item {
+      width: 100%;
+
+      display: flex;
+      justify-content: end;
+      // padding-right: 3rem;
+    }
+    .contact_nick{font-size: 1rem;}
+  }
+}
+
+
+@media screen and (min-width: 768px) {
+  .navbar_super{
+    .nav_center{
+      .page_title_large{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--bs-gray-400);
+      }
+    }
+
+  }
+  .footer{
+    padding: 1rem 2rem var(--nav-height) 3rem;
+    .footer_link_item {
+      padding-right: 3rem;
+    }
+
+    .contact_nick{font-size: 1.5rem;}
+  }
+
+}

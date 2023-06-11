@@ -1,0 +1,11 @@
+/* Databsase Page */
+.database_page{
+  // background-color: pink;
+  .ul_no_bullets{
+    list-style-type: none; /* Remove bullets */
+
+  }
+  .file_input_div{
+    padding-left: 2rem;// same as bullets padding
+  }
+}
