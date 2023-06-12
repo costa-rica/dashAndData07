@@ -1,5 +1,6 @@
 from flask import Blueprint
-from flask import render_template
+from flask import render_template, url_for, redirect, flash, request, \
+    abort, session, Response, current_app, send_from_directory, make_response
 import os
 import logging
 from logging.handlers import RotatingFileHandler
@@ -39,4 +40,26 @@ def home():
     logger_bp_main.info(f"-- in home page route --")
 
     return render_template('main/home.html')
+
+
+# Custom static data
+@bp_main.route('/<dir_name>/<filename>')
+def file_DB_ROOT(dir_name, filename):
+    # print("-- enterd custom static -")
+    # name_no_spaces = ""
+    # dir_name = 
+    
+    return send_from_directory(os.path.join(current_app.config.get('DB_ROOT'),"files", dir_name), filename)
+
+
+
+
+# Custom static data - DIR_DB_AUXILARY (/_databases/dashAndData07/auxilary/<aux_dir_name>/<filename>)
+@bp_main.route('/get_aux_file_from_dir/<aux_dir_name>/<filename>')
+def get_aux_file_from_dir(aux_dir_name, filename):
+    logger_bp_main.info(f"- in get_aux_file_from_dir route")
+    
+    return send_from_directory(os.path.join(current_app.config.get('DB_ROOT'),"auxilary", aux_dir_name), filename)
+
+
 

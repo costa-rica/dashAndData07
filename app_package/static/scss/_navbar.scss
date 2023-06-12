@@ -24,7 +24,7 @@
 .navbar_super {
   position: fixed; // <--HERE
   z-index: 1; // <--HERE
-
+  
   // padding-top: 0;
   // margin-top:0;
   .navbar_custom {
@@ -34,6 +34,7 @@
     width: 100%;
     height: 5rem;
     gap: 1rem;
+    background-color: var(--bs-gray-700);
 
     /* Navbar Left */
     .nav_left {

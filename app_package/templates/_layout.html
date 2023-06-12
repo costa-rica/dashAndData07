@@ -5,20 +5,21 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="{{ url_for('static', filename='/css/main.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
 
 
 
 
-  <link rel="icon"  href="/static/images/favicon.ico">
+  <!-- <link rel="icon"  href="/static/images/favicon.ico"> -->
+  <link rel="icon"  href="{{ url_for('bp_main.get_aux_file_from_dir', aux_dir_name='dashAndDataV3_teal', filename= 'favicon.ico') }}">
   <title>Dash and Data</title>
 </head>
 <body id="body">
 
   <div class="navbar_super">
 
-    <div class="navbar_custom  bg-primary " id="nav_section">
+    <div class="navbar_custom  " id="nav_section">
       
       <div class="nav_left">
 
@@ -36,7 +37,7 @@
 
          
           <div class="page_title_large">
-            <h1>NHTSA Data Dashboard </h1>
+            <h1>Dashboards & Databases </h1>
           </div><!-- page_title -->
           
 

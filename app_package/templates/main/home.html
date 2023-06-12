@@ -1,9 +1,13 @@
 {% extends "_layout.html" %}
 {% block title %} Home {% endblock %}
 {% block main %}
-<section class="Home">
+<div class="space_for_navbar_and_footer">
+
+
+<div class="home_page hundred_flex and_wrap">
+
     <div class="hero_top">
-        <div class="left-col">
+        <div class="hero_top_left">
             <p class="subhead">It's simple. Not easy.</p>
             <h1>Dashboards and Databases</h1>
             <div class="hero-cta">
@@ -11,21 +15,22 @@
                     Solutions for economists, statisticians and data analysts. Work with an economist that has the dashboard and database application skill set to create your own customized solution.
                 </p>
             </div>
+        </div><!-- left-col -->
+        
+        <div class="hero_top_right">
+            <!-- <img src="{{ url_for('static', filename='images/homepage/shiftgarten.png') }}" alt="Shiftgarten Login"> -->
+            <img src="{{ url_for('bp_main.get_aux_file_from_dir', aux_dir_name='images_home_page', filename= 'what-sticks_steps_dashboard.png') }}">
         </div>
         
-        <div class="hero_img">
-            <img src="{{ url_for('static', filename='images/homepage/shiftgarten.png') }}" alt="Shiftgarten Login">
-        </div>
-        
-    </div>
-<!-- </section> -->
+    </div><!-- hero_top hundred_flex -->
 
-<!-- <section class="feature-section bg-secondary"> -->
-    <!-- <section class="feature_section"> -->
-        <div class="hero_features">
-            <!-- <div class="list_div"> -->
+
+
+        <div class="home_row_two">
+
+            <div class="home_row_two_left">
                 <ul class="features-list">
-                
+            
                     <li>Web interface to view/enter/send data</li>
                     <li>Secured with login/passwords</li>
                     <li>Centralized database for multiple users</li>
@@ -34,26 +39,31 @@
                     <li><b>Customize any detail of the application</b></li>
         
                 </ul>
-            <!-- </div> -->
+        </div><!-- home_row_two_right -->
 
-            <!-- <div class="hero_img"> -->
-                <img  src="{{ url_for('static', filename='images/homepage/shiftgarten_dashboard.png') }}" alt="Shiftgarten Dashboard">
-            <!-- </div> -->
-    
-        </div>
-    <!-- </section> -->
 
-<!-- </section> -->
-<!-- <section class="testimonials-section"> -->
-    <div class="hero_testimonials">
+            <div class="home_row_two_right">
+                <!-- <img src="{{ url_for('static', filename='images/homepage/shiftgarten.png') }}" alt="Shiftgarten Login"> -->
+                <img src="{{ url_for('bp_main.get_aux_file_from_dir', aux_dir_name='images_home_page', filename= 'kmDashboardInvestigations_shorter.png') }}">
+            </div><!-- home_row_two_left -->
+
+
+
+        </div><!-- home_row_two-->
+
+    <div class="home_row_three_testimonials">
         <ul class="hero_test_ul">
             <li>
-                <div class="testimonial_list_item bg-secondary">
-                    <blockquote >"I asked for a <i>Dropbox-like</i> application to store files. After working with Nick, together we have 
-						an interactive dashboard that not only houses public NHTSA data, but makes it easy for us to organize our 
-						reserach and identify issues."</blockquote>
+                <div class="testimonial_list_item ">
+                    <div class="div_quote">
+                        <blockquote >"I asked for a <i>Dropbox-like</i> application to store files. After working with Nick, together we have 
+                            an interactive dashboard that not only houses public NHTSA data, but makes it easy for us to organize our 
+                            reserach and identify issues."</blockquote>
+                    </div>
+
                     <div class="citation_image">
                         <!-- <'static', filename='images/people/EmilyReichard.jpeg' alt="Emily"> -->
+                        <img src="{{ url_for('bp_main.get_aux_file_from_dir', aux_dir_name='images_people', filename= 'DSC_0249_emily.JPG') }}">
                         <div class="citation_text">
                             <cite>- Emily Reichard <br/><a href="https://kineticmetrics.com/">Kinetic Metrics</a>, Founder</cite>
                         </div>
@@ -62,11 +72,15 @@
             </li>
 
             <li>
-                <div class="testimonial_list_item bg-secondary">
-                    <blockquote >"We thought this would be a one-off project. Now we're thinking of expanding the use of 
-                        dashboards and databases."</blockquote>
-                    <div class="citation_image">
+                <div class="testimonial_list_item ">
+                    <div class="div_quote">
+                        <blockquote >"We thought this would be a one-off project. Now we're thinking of expanding the use of 
+                            dashboards and databases."</blockquote>
+                    </div>
+
+                    <div class="citation_image align_right">
                         <!-- <('static', filename='images/people/MarkSwanson.jpeg') alt="Mark"> -->
+                        <img src="{{ url_for('bp_main.get_aux_file_from_dir', aux_dir_name='images_people', filename= 'DSC_0395_mark.jpg') }}">
                         <div class="citation_text">
                             <cite>- Mark Swanson <br/><a href="https://kineticmetrics.com/">Kinetic Metrics</a>, Founder</cite>
                         </div>
@@ -75,8 +89,8 @@
             </li>
 
         </ul>
-    </div>
-<!-- </section> -->
+    </div><!-- hero_testimonials -->
+
 
 <hr>
 
@@ -141,8 +155,8 @@
 
 
 
-</section>
-
+</div>
+</div>
 
 
   
