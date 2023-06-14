@@ -107,19 +107,17 @@ def send_me_a_message():
     print(formDict)
     
     # get email, name and message
-
     senders_name = formDict.get('name')
     senders_email = formDict.get('email')
     senders_message = formDict.get('message')
 
-    #send message to nick@dashanddata.com
-
-    # Send email confirming succesfully sent message to nick@dashanddata.com
+    # send message to nick@dashanddata.com
     try:
         send_message_to_nick(senders_name, senders_email, senders_message)
         logger_bp_main.info('- send_message_to_nick succeeded!')
     except:
         logger_bp_main.info('*** not successsuflly send_message_to_nick ***')
+    # Send confirmation email to sender
     try:
         send_confirm_email(senders_name, senders_email, senders_message)
         logger_bp_main.info('- send_confirm_email succeeded!')
@@ -128,8 +126,6 @@ def send_me_a_message():
         flash(f'Problem with email: {senders_email}', 'warning')
         # return redirect(url_for('bp_users.login'))
         return redirect(url_for('bp_main.home'))
-
-
 
     flash(f'Message has been sent to nick@dashanddata.com. A verification has been sent to your email as well.', 'success')
     return redirect(url_for('bp_main.home'))

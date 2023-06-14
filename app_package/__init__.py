@@ -5,10 +5,13 @@ import logging
 from logging.handlers import RotatingFileHandler
 from pytz import timezone
 from datetime import datetime
-from dd07_models import login_manager
+# from dd07_models import login_manager
+from dd07_models import login_manager, sess_users, sess_cage, sess_bls, \
+    engine_users, engine_cage, engine_bls, text, Base, \
+    Users, BlogPosts, CageCompanies, IndustryNames, \
+    IndustryValues, CommodityNames, CommodityValues
 from flask_mail import Mail
 import secure
-
 
 if not os.path.exists(os.path.join(os.environ.get('WEB_ROOT'),'logs')):
     os.makedirs(os.path.join(os.environ.get('WEB_ROOT'), 'logs'))
@@ -42,7 +45,6 @@ logging.getLogger('werkzeug').addHandler(file_handler)
 logger_init.info(f'--- Starting Dashboards and Databases 07 web application---')
 TEMPORARILY_DOWN = "ACTIVE" if os.environ.get('TEMPORARILY_DOWN') == "1" else "inactive"
 logger_init.info(f"- TEMPORARILY_DOWN: {TEMPORARILY_DOWN}")
-logger_init.info(f"- SQL_URI_USERS: sqlite:///{os.environ.get('DB_ROOT')}{os.environ.get('DB_NAME_USERS')}")
 
 mail = Mail()
 secure_headers = secure.Secure()
@@ -52,6 +54,42 @@ def create_app(config_for_flask = config):
     app.config.from_object(config_for_flask)
     login_manager.init_app(app)
     mail.init_app(app)
+
+    ############################################################################
+    ## Build Auxiliary directories in DB_ROOT
+    if not os.path.exists(config_for_flask.DB_ROOT):
+        os.makedirs(config_for_flask.DB_ROOT)
+    # config.DIR_DB_AUXILARY directory:
+    if not os.path.exists(os.path.join(config_for_flask.DB_ROOT,"auxilary")):
+        os.makedirs(os.path.join(config_for_flask.DB_ROOT,"auxilary"))
+    # config.DIR_DB_AUX_IMAGES_PEOPLE directory:
+    if not os.path.exists(os.path.join(config_for_flask.DB_ROOT,"auxilary","images_people")):
+        os.makedirs(os.path.join(config_for_flask.DB_ROOT,"auxilary","images_people"))
+
+    ############################################################################
+    ## Build Sqlite database files
+    #Build DB_NAME_USERS
+    if os.path.exists(os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_USERS'))):
+        logger_init.info(f"db already exists: {os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_USERS'))}")
+    else:
+        Base.metadata.create_all(engine_users)
+        logger_init.info(f"NEW db created: {os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_USERS'))}")
+
+    #Build DB_NAME_CAGE
+    if os.path.exists(os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_CAGE'))):
+        logger_init.info(f"db already exists: {os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_CAGE'))}")
+    else:
+        Base.metadata.create_all(engine_cage)
+        logger_init.info(f"NEW db created: {os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_CAGE'))}")
+
+    #Build DB_NAME_BLS
+    if os.path.exists(os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_BLS'))):
+        logger_init.info(f"db already exists: {os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_BLS'))}")
+    else:
+        Base.metadata.create_all(engine_bls)
+        logger_init.info(f"NEW db created: {os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_BLS'))}")
+
+    logger_init.info(f"- SQL_URI_USERS: sqlite:///{config_for_flask.DB_ROOT}{os.environ.get('DB_NAME_USERS')}")
 
     from app_package.bp_main.routes import bp_main
     from app_package.bp_users.routes import bp_users
