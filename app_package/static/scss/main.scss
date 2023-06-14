@@ -121,18 +121,22 @@ body {
     width: 100%;
     align-items: center;
     color: var(--bs-gray-800);
-    li{
-      padding:0.25rem;
+
+    li {
+      padding: 0.25rem;
 
     }
 
   }
 
-  .home_row_three_testimonials {
+  .home_row_three_testimonials_super {
     background-color: var(--bs-primary);
-    // background-color: var(--bs-gray-400);
     padding: 2rem 1rem 1rem 1rem;
+    display: flex;
+    justify-content: center;
+    width:100%;
   }
+
 
   li {
     // padding:1rem;
@@ -153,50 +157,59 @@ body {
   }
 
   .citation_image_super {
-    display:flex;
+    display: flex;
     justify-content: end;
   }
-.home_hr_div{
-  background-color: var(--bs-primary);
-  width:100%;
-  // hr {
-  //   height: 12px;
-  //   // width: 100%;
-  //   background-color: #ff0000;
-  //   // border: none;
-  // }
-}
-.home_row_four_contact{
-  width:100%;
-  background-color: var(--bs-primary);
-  display:flex;
-  flex-wrap: wrap;
-  // width:100%;
-  // background-color: var(--bs-gray-400);
-}
-.contact_title_div {
-  width:100%;
-  padding-left: 1rem;
-}
-.contact_info_div{
-  padding-left: 1rem;
-  // width:100%;
-  // display: flex;
-  // flex-direction: column;
-  // label{width:100%;}
-}
-.contact_form_div{
-  padding:1rem;
-  width:100%;
-  display: flex;
-  flex-direction: column;
-  label{width:100%;}
-}
-.submit_div{
-  display:flex;
-  justify-content: end;
-  padding-top:1rem;
-}
+
+  .home_hr_div {
+    background-color: var(--bs-primary);
+    width: 100%;
+  }
+
+  .home_row_four_contact_super{
+    background-color: var(--bs-primary);
+    width: 100%;
+  }
+  .home_row_four_contact {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .contact_title_div {
+    width: 100%;
+    padding-left: 1rem;
+    display: flex;
+    justify-content: center;
+    
+  }
+
+  .contact_info_div {
+    padding-left: 1rem;
+    width:100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .contact_form_div {
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    // background-color: green;
+
+    label {
+      width: 100%;
+    }
+  }
+  .contact_form_class{
+    width:100%;
+  }
+
+  .submit_div {
+    display: flex;
+    justify-content: end;
+    padding-top: 1rem;
+  }
 }
 
 
@@ -212,6 +225,7 @@ body {
       width: auto;
       text-align: left;
     }
+    .hero_top_right{padding-top:2rem;}
 
     .home_row_two {
       flex-direction: row-reverse;
@@ -219,6 +233,7 @@ body {
 
     .home_row_two_right {
       flex: 1;
+      padding-top:2rem;
     }
 
     .home_row_two_left {
@@ -232,8 +247,17 @@ body {
       width: auto;
     }
 
-    
+    .home_row_three_testimonials {
 
+      max-width: 70rem;
+    }
+    .home_row_four_contact_super{
+      display:flex;
+      justify-content: center;
+    }
+    .home_row_four_contact{
+      max-width: 70rem;
+    }
 
 
   }

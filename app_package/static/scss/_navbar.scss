@@ -14,7 +14,8 @@
       float: right;
     }
   }
-  .keep_line_break{
+
+  .keep_line_break {
     white-space: pre-line;
   }
 }
@@ -24,7 +25,7 @@
 .navbar_super {
   position: fixed; // <--HERE
   z-index: 1; // <--HERE
-  
+
   // padding-top: 0;
   // margin-top:0;
   .navbar_custom {
@@ -43,30 +44,22 @@
 
     /* Navbar Left */
     .nav_left {
-      // display: flex;
-      // justify-content: center;
-      // align-items: center;
       min-width: 0; // very important to keep other divs from being kicked out of screen on small screen ... max-width not set
-      max-width: 12rem;
+      max-width: 8rem;
 
     }
-    .nav_left_a_href{
+
+    .nav_left_a_href {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100%;
-      width:100%;
-    }
-    .ws_logo_big {
-      display: none;
+      width: 100%;
     }
 
-    .ws_logo_small {
-      min-width: auto;
+    .dash_and_data_logo {
+      // min-width: auto;
       height: 75%;
-      // max-width: 100%;
-      // border-radius: 1rem;
-      
     }
 
     /* Navbar Center */
@@ -74,14 +67,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      // background-color: green;
       flex-wrap: wrap;
-      // width:100%;
     }
 
-
-    .page_title_large{
-      display:none
+    .page_title_large {
+      display: none
     }
 
     /* Navbar Right */
@@ -99,6 +89,7 @@
       cursor: pointer;
       height: 5rem;
     }
+
     .nav_exit_div {
       display: flex;
       justify-content: end;
@@ -112,7 +103,7 @@
     nav {
       position: fixed;
       z-index: 1;
-      width: 50%;
+      width: 40%;
       right: 0;
       top: 0;
       background: var(--bs-gray-500);
@@ -128,8 +119,8 @@
             text-decoration: none;
             display: block;
             padding: .5em 10px .5em 0;
-
             text-align: right;
+            color: var(--bs-gray-800);
             cursor: pointer;
 
             &:hover {
@@ -189,7 +180,8 @@
         background-color: #df382c;
         width: 100%;
       }
-      .looks_like_a_button{
+
+      .looks_like_a_button {
         text-align: center;
       }
     }
@@ -219,31 +211,147 @@
       justify-content: end;
       // padding-right: 3rem;
     }
-    .contact_nick{font-size: 1rem;}
+
+    .contact_nick {
+      font-size: 1rem;
+    }
   }
 }
 
 
 @media screen and (min-width: 768px) {
-  .navbar_super{
-    .nav_center{
-      .page_title_large{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: var(--bs-gray-400);
+  .navbar_super {
+
+
+    .navbar_custom {
+      justify-content: center;
+      /* Navbar Left */
+      // .nav_left {
+      //   // min-width: 0; // very important to keep other divs from being kicked out of screen on small screen ... max-width not set
+      //   // max-width: 8rem;
+
+      // }
+      // .nav_left_a_href{
+      //   // display: flex;
+      //   // justify-content: center;
+      //   // align-items: center;
+      //   // height: 100%;
+      //   // width:100%;
+      // }
+
+      .dash_and_data_logo {
+        min-width: auto;
+        height: 95%;
       }
+      .nav_center {
+        background-color: bisque;
+        // .page_title_large {
+        //   width: 100%;
+        //   display: flex;
+        //   justify-content: center;
+        //   align-items: center;
+        //   color: var(--bs-gray-400);
+  
+        // }
+        
+      }
+
+      // nav {
+      //   width: 20%;
+      // }
+    // }
+
+
+    /* OLD Nav bar */
+    .nav_right {
+      width:100%;
+      .nav_exit_div,
+      .nav_menu {
+        display: none;
+      }
+
+      nav {
+        display: flex;
+        justify-content: flex-end;
+        background: none;
+
+
+
+        ul {
+          display: flex;
+          align-items: center;
+          justify-content: end;
+          // margin:0;
+          // margin-top:-1rem;
+          padding: 0 .5rem 0 0;
+          // height: 75px;
+          height: var(--nav-height);
+          // width:100%;
+          // background-color: greenyellow;
+          gap:.25rem;
+          li {
+            // height:55px;
+            border: 1px solid;
+            margin: 0;
+            padding: 0 .5rem;
+            border-radius: .5rem;
+            background-color: var(--bs-teal);
+            height: calc(var(--nav-height) - 1rem);
+            // gap:.25rem;
+            // width:100%;
+            // .fit_text{
+            //   width:100%;
+            //   background-color: orange;
+            //   width:10rem;
+            // }
+            a {
+              font-size: x-large;
+              color: var(--bs-gray-200);
+              // width:100%;
+
+              &:hover {
+                height: 100%;
+                border-top-left-radius: 10px;
+              }
+            }
+
+            .dropdown-menu {
+              // background-color: red;
+              width: 40px;
+
+              // display: flex;
+              .dropdown-item {
+                // background-color: violet;
+                width: 60%;
+                font-size: medium;
+                padding: 0 0 0 5px;
+                margin: 0 0 0 0;
+                // text-align: right;
+
+              }
+            }
+          }
+        }
+      }
+
     }
+  }
+    /* END OLD Navbar */
+
+
 
   }
-  .footer{
+
+  .footer {
     padding: 1rem 2rem var(--nav-height) 3rem;
+
     .footer_link_item {
       padding-right: 3rem;
     }
 
-    .contact_nick{font-size: 1.5rem;}
+    .contact_nick {
+      font-size: 1.5rem;
+    }
   }
 
 }

@@ -11051,7 +11051,7 @@ legend {
 }
 .navbar_super .navbar_custom .nav_left {
   min-width: 0;
-  max-width: 12rem;
+  max-width: 8rem;
 }
 .navbar_super .navbar_custom .nav_left_a_href {
   display: flex;
@@ -11060,11 +11060,7 @@ legend {
   height: 100%;
   width: 100%;
 }
-.navbar_super .navbar_custom .ws_logo_big {
-  display: none;
-}
-.navbar_super .navbar_custom .ws_logo_small {
-  min-width: auto;
+.navbar_super .navbar_custom .dash_and_data_logo {
   height: 75%;
 }
 .navbar_super .navbar_custom .nav_center {
@@ -11099,7 +11095,7 @@ legend {
 .navbar_super .navbar_custom nav {
   position: fixed;
   z-index: 1;
-  width: 50%;
+  width: 40%;
   right: 0;
   top: 0;
   background: var(--bs-gray-500);
@@ -11115,6 +11111,7 @@ legend {
   display: block;
   padding: 0.5em 10px 0.5em 0;
   text-align: right;
+  color: var(--bs-gray-800);
   cursor: pointer;
 }
 .navbar_super .navbar_custom nav ul li a:hover {
@@ -11170,12 +11167,65 @@ legend {
 }
 
 @media screen and (min-width: 768px) {
-  .navbar_super .nav_center .page_title_large {
-    width: 100%;
-    display: flex;
+  .navbar_super {
+    /* END OLD Navbar */
+  }
+  .navbar_super .navbar_custom {
     justify-content: center;
+    /* Navbar Left */
+    /* OLD Nav bar */
+  }
+  .navbar_super .navbar_custom .dash_and_data_logo {
+    min-width: auto;
+    height: 95%;
+  }
+  .navbar_super .navbar_custom .nav_center {
+    background-color: bisque;
+  }
+  .navbar_super .navbar_custom .nav_right {
+    width: 100%;
+  }
+  .navbar_super .navbar_custom .nav_right .nav_exit_div,
+  .navbar_super .navbar_custom .nav_right .nav_menu {
+    display: none;
+  }
+  .navbar_super .navbar_custom .nav_right nav {
+    display: flex;
+    justify-content: flex-end;
+    background: none;
+  }
+  .navbar_super .navbar_custom .nav_right nav ul {
+    display: flex;
     align-items: center;
-    color: var(--bs-gray-400);
+    justify-content: end;
+    padding: 0 0.5rem 0 0;
+    height: var(--nav-height);
+    gap: 0.25rem;
+  }
+  .navbar_super .navbar_custom .nav_right nav ul li {
+    border: 1px solid;
+    margin: 0;
+    padding: 0 0.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--bs-teal);
+    height: calc(var(--nav-height) - 1rem);
+  }
+  .navbar_super .navbar_custom .nav_right nav ul li a {
+    font-size: x-large;
+    color: var(--bs-gray-200);
+  }
+  .navbar_super .navbar_custom .nav_right nav ul li a:hover {
+    height: 100%;
+    border-top-left-radius: 10px;
+  }
+  .navbar_super .navbar_custom .nav_right nav ul li .dropdown-menu {
+    width: 40px;
+  }
+  .navbar_super .navbar_custom .nav_right nav ul li .dropdown-menu .dropdown-item {
+    width: 60%;
+    font-size: medium;
+    padding: 0 0 0 5px;
+    margin: 0 0 0 0;
   }
   .footer {
     padding: 1rem 2rem var(--nav-height) 3rem;
@@ -11365,9 +11415,12 @@ body {
 .home_page .home_row_two_left li {
   padding: 0.25rem;
 }
-.home_page .home_row_three_testimonials {
+.home_page .home_row_three_testimonials_super {
   background-color: var(--bs-primary);
   padding: 2rem 1rem 1rem 1rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 .home_page li {
   list-style-type: none;
@@ -11390,18 +11443,25 @@ body {
   background-color: var(--bs-primary);
   width: 100%;
 }
-.home_page .home_row_four_contact {
-  width: 100%;
+.home_page .home_row_four_contact_super {
   background-color: var(--bs-primary);
+  width: 100%;
+}
+.home_page .home_row_four_contact {
   display: flex;
   flex-wrap: wrap;
 }
 .home_page .contact_title_div {
   width: 100%;
   padding-left: 1rem;
+  display: flex;
+  justify-content: center;
 }
 .home_page .contact_info_div {
   padding-left: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 .home_page .contact_form_div {
   padding: 1rem;
@@ -11410,6 +11470,9 @@ body {
   flex-direction: column;
 }
 .home_page .contact_form_div label {
+  width: 100%;
+}
+.home_page .contact_form_class {
   width: 100%;
 }
 .home_page .submit_div {
@@ -11426,17 +11489,31 @@ body {
     width: auto;
     text-align: left;
   }
+  .home_page .hero_top_right {
+    padding-top: 2rem;
+  }
   .home_page .home_row_two {
     flex-direction: row-reverse;
   }
   .home_page .home_row_two_right {
     flex: 1;
+    padding-top: 2rem;
   }
   .home_page .home_row_two_left {
     flex: 1;
   }
   .home_page .features_list_div {
     width: auto;
+  }
+  .home_page .home_row_three_testimonials {
+    max-width: 70rem;
+  }
+  .home_page .home_row_four_contact_super {
+    display: flex;
+    justify-content: center;
+  }
+  .home_page .home_row_four_contact {
+    max-width: 70rem;
   }
 }
 

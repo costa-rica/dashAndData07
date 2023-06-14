@@ -54,67 +54,74 @@ id="send_message_form"></form> -->
 
         </div><!-- home_row_two-->
 
-        <div class="home_row_three_testimonials">
-            <ul class="hero_test_ul">
-                <li>
-                    <div class="testimonial_list_item ">
-                        <div class="div_quote">
-                            <blockquote>"I asked for a <i>Dropbox-like</i> application to store files. After working
-                                with Nick, together we have
-                                an interactive dashboard that not only houses public NHTSA data, but makes it easy for
-                                us to organize our
-                                reserach and identify issues."</blockquote>
-                        </div>
-
-                        <div class="citation_image">
-                            <!-- <'static', filename='images/people/EmilyReichard.jpeg' alt="Emily"> -->
-                            <img
-                                src="{{ url_for('bp_main.get_aux_file_from_dir', aux_dir_name='images_people', filename= 'DSC_0249_emily.JPG') }}">
-                            <div class="citation_text">
-                                <cite>- Emily Reichard <br /><a href="https://kineticmetrics.com/">Kinetic Metrics</a>,
-                                    Founder</cite>
+        <div class="home_row_three_testimonials_super">
+            <div class="home_row_three_testimonials">
+                <ul class="hero_test_ul">
+                    <li>
+                        <div class="testimonial_list_item ">
+                            <div class="div_quote">
+                                <blockquote>"I asked for a <i>Dropbox-like</i> application to store files. After working
+                                    with Nick, together we have
+                                    an interactive dashboard that not only houses public NHTSA data, but makes it easy
+                                    for
+                                    us to organize our
+                                    reserach and identify issues."</blockquote>
                             </div>
-                        </div>
-                    </div>
-                </li>
 
-                <li>
-                    <div class="testimonial_list_item ">
-                        <div class="div_quote">
-                            <blockquote>"We thought this would be a one-off project. Now we're thinking of expanding the
-                                use of
-                                dashboards and databases."</blockquote>
-                        </div>
-                        <div class="citation_image_super ">
-                            <div class="citation_image ">
-                                <!-- <('static', filename='images/people/MarkSwanson.jpeg') alt="Mark"> -->
+                            <div class="citation_image">
+                                <!-- <'static', filename='images/people/EmilyReichard.jpeg' alt="Emily"> -->
                                 <img
-                                    src="{{ url_for('bp_main.get_aux_file_from_dir', aux_dir_name='images_people', filename= 'DSC_0395_mark.jpg') }}">
+                                    src="{{ url_for('bp_main.get_aux_file_from_dir', aux_dir_name='images_people', filename= 'DSC_0249_emily.JPG') }}">
                                 <div class="citation_text">
-                                    <cite>- Mark Swanson <br /><a href="https://kineticmetrics.com/">Kinetic
-                                            Metrics</a>, Founder</cite>
+                                    <cite>- Emily Reichard <br /><a href="https://kineticmetrics.com/">Kinetic
+                                            Metrics</a>,
+                                        Founder</cite>
                                 </div>
                             </div>
-                        </div><!-- citation_image_super align_right -->
+                        </div>
+                    </li>
 
-                    </div>
-                </li>
+                    <li>
+                        <div class="testimonial_list_item ">
+                            <div class="div_quote">
+                                <blockquote>"We thought this would be a one-off project. Now we're thinking of expanding
+                                    the
+                                    use of
+                                    dashboards and databases."</blockquote>
+                            </div>
+                            <div class="citation_image_super ">
+                                <div class="citation_image ">
+                                    <!-- <('static', filename='images/people/MarkSwanson.jpeg') alt="Mark"> -->
+                                    <img
+                                        src="{{ url_for('bp_main.get_aux_file_from_dir', aux_dir_name='images_people', filename= 'DSC_0395_mark.jpg') }}">
+                                    <div class="citation_text">
+                                        <cite>- Mark Swanson <br /><a href="https://kineticmetrics.com/">Kinetic
+                                                Metrics</a>, Founder</cite>
+                                    </div>
+                                </div>
+                            </div><!-- citation_image_super align_right -->
 
-            </ul>
-        </div><!-- hero_testimonials -->
+                        </div>
+                    </li>
+
+                </ul><!-- hero_test_ul -->
+            </div><!-- home_row_three_testimonials -->
+        </div><!-- home_row_three_testimonials_super -->
 
         <div class="home_hr_div">
             <hr>
         </div>
 
 
+        <div class="home_row_four_contact_super">
 
+        
         <div class="home_row_four_contact">
             <!-- <div class="contact-left"> -->
-                <div class="contact_title_div">
-                    <h2>Contact</h2>
-                </div>
-            
+            <div class="contact_title_div">
+                <h2>Contact</h2>
+            </div>
+
 
             <div class="contact_info_div">
                 <p class="p-index">
@@ -127,18 +134,18 @@ id="send_message_form"></form> -->
             </div><!-- div_right -->
 
             <form method="POST" action="{{ url_for('bp_main.send_me_a_message') }}" enctype="multipart/form-data"
-                id="send_message_form">
+                id="send_message_form" class="contact_form_class">
                 <div class="contact_form_div">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" class="form-control" from="send_message_form"><br />
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email"class="form-control" from="send_message_form"><br />
+                    <input type="email" id="email" name="email" class="form-control" from="send_message_form"><br />
                     <div class="textarea_custom_div">
                         <label for="message">Message</label>
                         <textarea class="textarea_custom form-control" name="message" id="message" cols="30" rows="10"
-                        from="send_message_form"></textarea>
+                            from="send_message_form"></textarea>
                     </div>
-    
+
                     <br />
                     <div class="submit_div">
                         <!-- <input type="submit" class="send-message-cta bg-info" value="Send Message"> -->
@@ -150,31 +157,15 @@ id="send_message_form"></form> -->
 
 
 
-                <div class="modal fade" id="contactModal">
-                    {% include 'modals/message_sent.html' %}
-                    <!-- <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Message Sent</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true"></span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>A confirmation email was sent to you.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div> -->
-                </div>
+
 
 
             </form>
 
 
         </div><!-- home_row_four_contact -->
+    </div><!-- home_row_four_contact_super -->
+
     </div><!-- home_page hundred_flex and_wrap -->
 </div><!-- space_for_navbar_and_footer -->
 
