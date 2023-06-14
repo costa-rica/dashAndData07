@@ -45,6 +45,7 @@ logging.getLogger('werkzeug').addHandler(file_handler)
 logger_init.info(f'--- Starting Dashboards and Databases 07 web application---')
 TEMPORARILY_DOWN = "ACTIVE" if os.environ.get('TEMPORARILY_DOWN') == "1" else "inactive"
 logger_init.info(f"- TEMPORARILY_DOWN: {TEMPORARILY_DOWN}")
+logger_init.info(f"- CONFIG_TYPE: {os.environ.get('CONFIG_TYPE')}")
 
 mail = Mail()
 secure_headers = secure.Secure()
