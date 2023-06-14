@@ -56,7 +56,7 @@ def create_app(config_for_flask = config):
     login_manager.init_app(app)
     mail.init_app(app)
 
-    # logger_init.info(f"- CONFIG_TYPE: {config_for_flask.CONFIG_TYPE}")
+    logger_init.info(f"- DB_ROOT: {config_for_flask.DB_ROOT}")
 
     ############################################################################
     ## Build Auxiliary directories in DB_ROOT
@@ -69,9 +69,13 @@ def create_app(config_for_flask = config):
     if not os.path.exists(os.path.join(config_for_flask.DB_ROOT,"auxilary","images_people")):
         os.makedirs(os.path.join(config_for_flask.DB_ROOT,"auxilary","images_people"))
 
+
+
+
     ############################################################################
     ## Build Sqlite database files
     #Build DB_NAME_USERS
+    
     if os.path.exists(os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_USERS'))):
         logger_init.info(f"db already exists: {os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_USERS'))}")
     else:
