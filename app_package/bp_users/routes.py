@@ -14,6 +14,7 @@ from dd07_models import sess_users, sess_cage, sess_bls, engine_users, engine_ca
 from app_package.bp_users.utils import send_reset_email, send_confirm_email
 import datetime
 import requests
+# from app_package import secure_headers
 
 #Setting up Logger
 formatter = logging.Formatter('%(asctime)s:%(name)s:%(message)s')
@@ -58,7 +59,11 @@ def before_request():
             logger_bp_users.info(f'- request.url: {request.url}')
             return redirect(url_for('bp_main.temporarily_down'))
 
-
+# #This is to get the security headers on home page
+# @bp_users.after_request
+# def set_secure_headers(response):
+#     secure_headers.framework.flask(response)
+#     return response
 
 @bp_users.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -142,12 +147,10 @@ def register():
 
     return render_template('users/register.html', page_name = page_name)
 
-
 @bp_users.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('bp_main.home'))
-
 
 @bp_users.route('/reset_password', methods = ["GET", "POST"])
 def reset_password():
@@ -171,7 +174,6 @@ def reset_password():
 
         return redirect(url_for('bp_users.reset_password'))
     return render_template('users/reset_request.html', page_name = page_name)
-
 
 @bp_users.route('/reset_password/<token>', methods = ["GET", "POST"])
 def reset_token(token):
@@ -198,47 +200,47 @@ def reset_token(token):
     return render_template('users/reset_request.html', page_name='Reset Password')
 
 
-########################
-# recaptcha
-########################
+# ########################
+# # recaptcha
+# ########################
 
-@bp_users.route("/sign-user-up", methods=['POST'])
-def sign_up_user():
-    # print(request.form)
-    secret_response = request.form['g-recaptcha-response']
+# @bp_users.route("/sign-user-up", methods=['POST'])
+# def sign_up_user():
+#     # print(request.form)
+#     secret_response = request.form['g-recaptcha-response']
 
-    verify_response = requests.post(url=f"{current_app.config.get('VERIFY_URL_CAPTCHA')}?secret={current_app.config.get('SECRET_KEY_CAPTCHA')}&response={secret_response}").json()
-    print(verify_response)
-    if verify_response['success'] == False or verify_response['score'] < 0.5:
-        abort(401)
+#     verify_response = requests.post(url=f"{current_app.config.get('VERIFY_URL_CAPTCHA')}?secret={current_app.config.get('SECRET_KEY_CAPTCHA')}&response={secret_response}").json()
+#     print(verify_response)
+#     if verify_response['success'] == False or verify_response['score'] < 0.5:
+#         abort(401)
 
-    formDict = request.form.to_dict()
-    print(formDict)
+#     formDict = request.form.to_dict()
+#     print(formDict)
     
-    # get email, name and message
+#     # get email, name and message
 
-    senders_name = formDict.get('name')
-    senders_email = formDict.get('email')
-    senders_message = formDict.get('message')
+#     senders_name = formDict.get('name')
+#     senders_email = formDict.get('email')
+#     senders_message = formDict.get('message')
 
-    #send message to nick@dashanddata.com
+#     #send message to nick@dashanddata.com
 
-    # Send email confirming succesfully sent message to nick@dashanddata.com
-    try:
-        send_message_to_nick(senders_name, senders_email, senders_message)
-    except:
-        print('*** not successsuflly send_message_to_nick ***')
-    try:
-        send_confirm_email(senders_name, senders_email, senders_message)
-    except:
-        print('*** not successsuflly send_confirm_email')
-        flash(f'Problem with email: {new_email}', 'warning')
-        return redirect(url_for('bp_users.login'))
+#     # Send email confirming succesfully sent message to nick@dashanddata.com
+#     try:
+#         send_message_to_nick(senders_name, senders_email, senders_message)
+#     except:
+#         print('*** not successsuflly send_message_to_nick ***')
+#     try:
+#         send_confirm_email(senders_name, senders_email, senders_message)
+#     except:
+#         print('*** not successsuflly send_confirm_email')
+#         flash(f'Problem with email: {new_email}', 'warning')
+#         return redirect(url_for('bp_users.login'))
 
 
 
-    flash(f'Message has been sent to nick@dashanddata.com. A verification has been sent to your email as well.', 'success')
-    return redirect(url_for('bp_users.home'))
+#     flash(f'Message has been sent to nick@dashanddata.com. A verification has been sent to your email as well.', 'success')
+#     return redirect(url_for('bp_users.home'))
 
 
     # return redirect(url_for('home'))

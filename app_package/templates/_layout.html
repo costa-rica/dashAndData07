@@ -8,7 +8,12 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
 
-
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <script>
+    function onSubmit(token) {
+      document.getElementById("send_message_form").submit();
+    }
+  </script>
 
 
   <!-- <link rel="icon"  href="/static/images/favicon.ico"> -->
@@ -17,9 +22,9 @@
 </head>
 <body id="body">
 
-  <div class="navbar_super">
+  <div class="navbar_super ">
 
-    <div class="navbar_custom  " id="nav_section">
+    <div class="navbar_custom " id="nav_section">
       
       <div class="nav_left">
 

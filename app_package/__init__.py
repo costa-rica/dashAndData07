@@ -7,6 +7,7 @@ from pytz import timezone
 from datetime import datetime
 from dd07_models import login_manager
 from flask_mail import Mail
+import secure
 
 
 if not os.path.exists(os.path.join(os.environ.get('WEB_ROOT'),'logs')):
@@ -44,6 +45,7 @@ logger_init.info(f"- TEMPORARILY_DOWN: {TEMPORARILY_DOWN}")
 logger_init.info(f"- SQL_URI_USERS: sqlite:///{os.environ.get('DB_ROOT')}{os.environ.get('DB_NAME_USERS')}")
 
 mail = Mail()
+secure_headers = secure.Secure()
 
 def create_app(config_for_flask = config):
     app = Flask(__name__)   

@@ -11042,7 +11042,9 @@ legend {
   width: 100%;
   height: 5rem;
   gap: 1rem;
-  background-color: var(--bs-gray-700);
+  background-color: var(--bs-primary);
+  border: 1px solid black;
+  border-radius: 1px;
   /* Navbar Left */
   /* Navbar Center */
   /* Navbar Right */
@@ -11282,7 +11284,6 @@ body {
 
 .space_for_navbar_and_footer {
   padding-top: var(--nav-height);
-  padding-bottom: var(--nav-height);
 }
 
 .flex_center {
@@ -11314,12 +11315,13 @@ body {
 }
 
 .home_page .hero_top {
+  background-color: var(--bs-gray-900);
   width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
 .home_page .hero_top_left {
-  padding: 0.5rem;
+  padding: 2rem 0.5rem 0 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11327,7 +11329,7 @@ body {
   text-align: center;
 }
 .home_page .hero_top_right {
-  padding: 0.5rem;
+  padding: 0 1rem 2rem 1rem;
 }
 .home_page .hero_top_right img {
   max-width: 100%;
@@ -11345,14 +11347,14 @@ body {
 }
 .home_page .home_row_two_right {
   flex: 1;
-  padding: 3rem;
+  padding: 0 1rem 2rem 1rem;
 }
 .home_page .home_row_two_right img {
   max-width: 100%;
   border-radius: 0.3rem;
 }
 .home_page .home_row_two_left {
-  padding: 0.5rem;
+  padding: 2rem 0.5rem 0 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11360,9 +11362,12 @@ body {
   align-items: center;
   color: var(--bs-gray-800);
 }
+.home_page .home_row_two_left li {
+  padding: 0.25rem;
+}
 .home_page .home_row_three_testimonials {
   background-color: var(--bs-primary);
-  padding: 5rem;
+  padding: 2rem 1rem 1rem 1rem;
 }
 .home_page li {
   list-style-type: none;
@@ -11377,8 +11382,40 @@ body {
 .home_page .citation_image {
   margin-top: -1rem;
 }
-.home_page .align_right {
+.home_page .citation_image_super {
+  display: flex;
   justify-content: end;
+}
+.home_page .home_hr_div {
+  background-color: var(--bs-primary);
+  width: 100%;
+}
+.home_page .home_row_four_contact {
+  width: 100%;
+  background-color: var(--bs-primary);
+  display: flex;
+  flex-wrap: wrap;
+}
+.home_page .contact_title_div {
+  width: 100%;
+  padding-left: 1rem;
+}
+.home_page .contact_info_div {
+  padding-left: 1rem;
+}
+.home_page .contact_form_div {
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.home_page .contact_form_div label {
+  width: 100%;
+}
+.home_page .submit_div {
+  display: flex;
+  justify-content: end;
+  padding-top: 1rem;
 }
 
 @media screen and (min-width: 768px) {

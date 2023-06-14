@@ -4,7 +4,9 @@ from flask import render_template, url_for, redirect, flash, request, \
 import os
 import logging
 from logging.handlers import RotatingFileHandler
-
+from app_package import secure_headers
+import requests
+from app_package.bp_main.utils import send_confirm_email, send_message_to_nick
 
 bp_main = Blueprint('bp_main', __name__)
 
@@ -24,13 +26,35 @@ logger_bp_main.addHandler(file_handler)
 logger_bp_main.addHandler(stream_handler)
 
 
+
+#This is to get the security headers on home page
+@bp_main.after_request
+def set_secure_headers(response):
+    secure_headers.framework.flask(response)
+    print("- in @bp_main.after_request")
+    # print(response)
+    # print(dir(response))
+    # print("----headers-----")
+    # print(response.headers)
+    # print("---------")
+    # try:
+        
+    #     print("----data-----")
+        
+    #     print(response.data)
+    #     print("---------")
+    # except:
+    #     print("----> no data")
+
+    return response
+
+
 @bp_main.before_request
 def before_request():
-    logger_bp_main.info(f"-- ***** in before_request route --")
+    logger_bp_main.info(f"- in bp_main.before_request route --")
     ###### TEMPORARILY_DOWN: redirects to under construction page ########
     if os.environ.get('TEMPORARILY_DOWN') == '1':
         if request.url != request.url_root + url_for('bp_main.temporarily_down')[1:]:
-            # logger_bp_users.info("*** (logger_bp_users) Redirected ")
             logger_bp_main.info(f'- request.referrer: {request.referrer}')
             logger_bp_main.info(f'- request.url: {request.url}')
             return redirect(url_for('bp_main.temporarily_down'))
@@ -39,7 +63,7 @@ def before_request():
 def home():
     logger_bp_main.info(f"-- in home page route --")
 
-    return render_template('main/home.html')
+    return render_template('main/home.html', site_key=current_app.config.get('SITE_KEY_CAPTCHA'))
 
 
 # Custom static data
@@ -63,3 +87,49 @@ def get_aux_file_from_dir(aux_dir_name, filename):
 
 
 
+########################
+# recaptcha
+########################
+
+# @bp_main.route("/sign-user-up", methods=['POST'])
+@bp_main.route("/send_me_a_message", methods=['POST'])
+# def sign_up_user():
+def send_me_a_message():
+    # print(request.form)
+    secret_response = request.form['g-recaptcha-response']
+
+    verify_response = requests.post(url=f"{current_app.config.get('VERIFY_URL_CAPTCHA')}?secret={current_app.config.get('SECRET_KEY_CAPTCHA')}&response={secret_response}").json()
+    print(verify_response)
+    if verify_response['success'] == False or verify_response['score'] < 0.5:
+        abort(401)
+
+    formDict = request.form.to_dict()
+    print(formDict)
+    
+    # get email, name and message
+
+    senders_name = formDict.get('name')
+    senders_email = formDict.get('email')
+    senders_message = formDict.get('message')
+
+    #send message to nick@dashanddata.com
+
+    # Send email confirming succesfully sent message to nick@dashanddata.com
+    try:
+        send_message_to_nick(senders_name, senders_email, senders_message)
+        logger_bp_main.info('- send_message_to_nick succeeded!')
+    except:
+        logger_bp_main.info('*** not successsuflly send_message_to_nick ***')
+    try:
+        send_confirm_email(senders_name, senders_email, senders_message)
+        logger_bp_main.info('- send_confirm_email succeeded!')
+    except:
+        logger_bp_main.info('*** not successsuflly send_confirm_email')
+        flash(f'Problem with email: {senders_email}', 'warning')
+        # return redirect(url_for('bp_users.login'))
+        return redirect(url_for('bp_main.home'))
+
+
+
+    flash(f'Message has been sent to nick@dashanddata.com. A verification has been sent to your email as well.', 'success')
+    return redirect(url_for('bp_main.home'))
