@@ -45,7 +45,7 @@ logging.getLogger('werkzeug').addHandler(file_handler)
 logger_init.info(f'--- Starting Dashboards and Databases 07 web application---')
 TEMPORARILY_DOWN = "ACTIVE" if os.environ.get('TEMPORARILY_DOWN') == "1" else "inactive"
 logger_init.info(f"- TEMPORARILY_DOWN: {TEMPORARILY_DOWN}")
-logger_init.info(f"- CONFIG_TYPE: {os.environ.get('CONFIG_TYPE')}")
+logger_init.info(f"- FLASK_ENV: {os.environ.get('FLASK_ENV')}")
 
 mail = Mail()
 secure_headers = secure.Secure()
@@ -55,6 +55,8 @@ def create_app(config_for_flask = config):
     app.config.from_object(config_for_flask)
     login_manager.init_app(app)
     mail.init_app(app)
+
+    # logger_init.info(f"- CONFIG_TYPE: {config_for_flask.CONFIG_TYPE}")
 
     ############################################################################
     ## Build Auxiliary directories in DB_ROOT

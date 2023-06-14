@@ -1,2 +1,1 @@
 FLASK_APP=run
-CONFIG_TYPE='local'
