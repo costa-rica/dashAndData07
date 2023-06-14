@@ -11,6 +11,7 @@
 body {
   // background-color: #CFD4D9;
   background-color: var(--bs-gray-300);
+  // background-color: var(--bs-gray-900);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -55,6 +56,16 @@ body {
 
 .and_wrap {
   flex-wrap: wrap;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10rem;
+  background-color: var(--bs-gray-900);
+  z-index: -1;
 }
 
 .home_page {

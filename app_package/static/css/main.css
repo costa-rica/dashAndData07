@@ -11172,15 +11172,20 @@ legend {
   }
   .navbar_super .navbar_custom {
     justify-content: center;
+    height: fit-content;
     /* Navbar Left */
     /* OLD Nav bar */
   }
+  .navbar_super .navbar_custom .nav_left {
+    width: 12rem;
+  }
+  .navbar_super .navbar_custom .nav_left_a_href {
+    width: 10rem;
+  }
   .navbar_super .navbar_custom .dash_and_data_logo {
     min-width: auto;
-    height: 95%;
-  }
-  .navbar_super .navbar_custom .nav_center {
-    background-color: bisque;
+    height: 7rem;
+    padding: 0.25rem 2rem;
   }
   .navbar_super .navbar_custom .nav_right {
     width: 100%;
@@ -11208,15 +11213,13 @@ legend {
     padding: 0 0.5rem;
     border-radius: 0.5rem;
     background-color: var(--bs-teal);
-    height: calc(var(--nav-height) - 1rem);
+    height: calc(var(--nav-height) - 2rem);
+    display: flex;
+    align-items: center;
   }
   .navbar_super .navbar_custom .nav_right nav ul li a {
-    font-size: x-large;
+    font-size: 2rem;
     color: var(--bs-gray-200);
-  }
-  .navbar_super .navbar_custom .nav_right nav ul li a:hover {
-    height: 100%;
-    border-top-left-radius: 10px;
   }
   .navbar_super .navbar_custom .nav_right nav ul li .dropdown-menu {
     width: 40px;
@@ -11362,6 +11365,16 @@ body {
 
 .and_wrap {
   flex-wrap: wrap;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10rem;
+  background-color: var(--bs-gray-900);
+  z-index: -1;
 }
 
 .home_page .hero_top {
