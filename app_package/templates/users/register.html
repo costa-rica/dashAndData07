@@ -1,18 +1,18 @@
 {% extends "_layout.html" %}
 {% block main %}
-<form method="POST" id="form_1"></form>
+
 
 <!-- <div class="main"> -->
-  <div class="space_for_navbar_and_footer flex_center">
-  
+<div class="space_for_navbar_and_footer flex_center">
+
   <div class="register_page">
 
-      <div class = "title">
-        <h1>{{ page_name }}</h1>
-      </div>
-  
-      <div class="register_form">
+    <div class="title">
+      <h1>{{ page_name }}</h1>
+    </div>
 
+    <div class="register_form">
+      <form method="POST" id="form_1">
         <div class="register_form_sub">
 
           <div class="email_form_group">
@@ -38,11 +38,11 @@
 
         </div><!-- register_form_sub -->
 
+      </form>
 
 
-  
-      </div><!-- register_form -->
-      
+    </div><!-- register_form -->
+
 
 
 
@@ -52,16 +52,16 @@
 
 <!-- Show password -->
 <script>
-  window.addEventListener("load", function(){
-      var checkbox  = document.getElementById('password_checkbox');
-      var x = document.getElementById('password_text');
-      checkbox.addEventListener('change', function() {
-          if(this.checked) {
-              x.type = 'text'; 
-          } else {
-              x.type = 'password'; 
-          }
-      });
+  window.addEventListener("load", function () {
+    var checkbox = document.getElementById('password_checkbox');
+    var x = document.getElementById('password_text');
+    checkbox.addEventListener('change', function () {
+      if (this.checked) {
+        x.type = 'text';
+      } else {
+        x.type = 'password';
+      }
+    });
   });
 </script>
 

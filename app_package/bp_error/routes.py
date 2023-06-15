@@ -31,7 +31,7 @@ logger_bp_error.addHandler(stream_handler)
 
 bp_error = Blueprint('bp_error', __name__)
 
-if os.environ.get('CONFIG_TYPE')=='prod':
+if os.environ.get('FLASK_ENV')=='prod':
     @bp_error.app_errorhandler(400)
     def handle_400(err):
         logger_bp_error.info(f'@bp_error.app_errorhandler(400), err: {err}')
@@ -76,8 +76,6 @@ if os.environ.get('CONFIG_TYPE')=='prod':
         error_message = f"Could be anything... ¯\_(ツ)_/¯  ... try again or send email to {current_app.config['MAIL_USERNAME']}."
         return render_template('errors/error_template.html', error_number="502", error_message=error_message)
 
-
-if os.environ.get('CONFIG_TYPE')=='prod':
 
     @bp_error.app_errorhandler(AttributeError)
     @bp_error.app_errorhandler(KeyError)

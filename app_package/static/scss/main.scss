@@ -2,10 +2,15 @@
 @use "navbar";
 @use "users";
 @use "admin";
+@use "blog";
 
 :root {
   --nav-height: 123px;
   // --table-chart-width: 100%;
+  --website_theme_font_color_light: white;
+  --website_theme_font_color_dark: black;
+  --website_theme_fun_color: #20C997;
+  --website_max_width: 70rem;
 }
 
 body {
@@ -160,6 +165,7 @@ body {
     background-color: var(--bs-secondary);
     padding: 2rem;
     border-radius: 2rem;
+    color:var(--website_theme_font_color_light)
   }
 
   .citation_image {
@@ -260,14 +266,14 @@ body {
 
     .home_row_three_testimonials {
 
-      max-width: 70rem;
+      max-width: var(--website_max_width);
     }
     .home_row_four_contact_super{
       display:flex;
       justify-content: center;
     }
     .home_row_four_contact{
-      max-width: 70rem;
+      max-width: var(--website_max_width);
     }
 
 

@@ -57,19 +57,38 @@ def create_app(config_for_flask = config):
     mail.init_app(app)
 
     logger_init.info(f"- DB_ROOT: {config_for_flask.DB_ROOT}")
+    # logger_init.info(f"- ENV: {app.config['ENV']}")
+
 
     ############################################################################
     ## Build Auxiliary directories in DB_ROOT
     if not os.path.exists(config_for_flask.DB_ROOT):
         os.makedirs(config_for_flask.DB_ROOT)
+    # # config.DIR_DB_AUXILARY directory:
+    # if not os.path.exists(os.path.join(config_for_flask.DB_ROOT,"auxilary")):
+    #     os.makedirs(os.path.join(config_for_flask.DB_ROOT,"auxilary"))
+    # # config.DIR_DB_AUX_IMAGES_PEOPLE directory:
+    # if not os.path.exists(os.path.join(config_for_flask.DB_ROOT,"auxilary","images_people")):
+    #     os.makedirs(os.path.join(config_for_flask.DB_ROOT,"auxilary","images_people"))
+    # # config.DIR_DB_AUX_BLOG directory:
+    # if not os.path.exists(os.path.join(config_for_flask.DB_ROOT,"auxilary","blog")):
+    #     os.makedirs(os.path.join(config_for_flask.DB_ROOT,"auxilary","blog"))
+    # # config.DIR_DB_AUX_BLOG directory:
+    # if not os.path.exists(os.path.join(config_for_flask.DB_ROOT,"auxilary","blog","posts")):
+    #     os.makedirs(os.path.join(config_for_flask.DB_ROOT,"auxilary","blog","posts"))
+
     # config.DIR_DB_AUXILARY directory:
-    if not os.path.exists(os.path.join(config_for_flask.DB_ROOT,"auxilary")):
-        os.makedirs(os.path.join(config_for_flask.DB_ROOT,"auxilary"))
+    if not os.path.exists(config_for_flask.DIR_DB_AUXILARY):
+        os.makedirs(config_for_flask.DIR_DB_AUXILARY)
     # config.DIR_DB_AUX_IMAGES_PEOPLE directory:
-    if not os.path.exists(os.path.join(config_for_flask.DB_ROOT,"auxilary","images_people")):
-        os.makedirs(os.path.join(config_for_flask.DB_ROOT,"auxilary","images_people"))
-
-
+    if not os.path.exists(config_for_flask.DIR_DB_AUX_IMAGES_PEOPLE):
+        os.makedirs(config_for_flask.DIR_DB_AUX_IMAGES_PEOPLE)
+    # config.DIR_DB_AUX_BLOG directory:
+    if not os.path.exists(config_for_flask.DIR_DB_AUX_BLOG):
+        os.makedirs(config_for_flask.DIR_DB_AUX_BLOG)
+    # config.DIR_DB_AUX_BLOG_POSTS directory:
+    if not os.path.exists(config_for_flask.DIR_DB_AUX_BLOG_POSTS):
+        os.makedirs(config_for_flask.DIR_DB_AUX_BLOG_POSTS)
 
 
     ############################################################################
@@ -102,10 +121,12 @@ def create_app(config_for_flask = config):
     from app_package.bp_users.routes import bp_users
     from app_package.bp_admin.routes import bp_admin
     from app_package.bp_error.routes import bp_error
+    from app_package.bp_blog.routes import bp_blog
 
     app.register_blueprint(bp_main)
     app.register_blueprint(bp_users)
     app.register_blueprint(bp_admin)
     app.register_blueprint(bp_error)
+    app.register_blueprint(bp_blog)
 
     return app

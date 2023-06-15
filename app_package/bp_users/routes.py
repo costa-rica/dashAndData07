@@ -42,34 +42,33 @@ salt = bcrypt.gensalt()
 bp_users = Blueprint('bp_users', __name__)
 
 
-@bp_users.before_request
-def before_request():
-    logger_bp_users.info("- in bp_users.before_request ")
-    ###### Keeps user logged in 31 days ########
-    session.permanent = True
-    current_app.permanent_session_lifetime = datetime.timedelta(days=31)
-    session.modified = True
-    logger_bp_users.info(f"!--> current_app.permanent_session_lifetime: {current_app.permanent_session_lifetime}")
-    ###### END Keeps user logged in 31 days ######## 
-    ###### TEMPORARILY_DOWN: redirects to under construction page ########
-    if os.environ.get('TEMPORARILY_DOWN') == '1':
-        if request.url != request.url_root + url_for('bp_main.temporarily_down')[1:]:
-            # logger_bp_users.info("*** (logger_bp_users) Redirected ")
-            logger_bp_users.info(f'- request.referrer: {request.referrer}')
-            logger_bp_users.info(f'- request.url: {request.url}')
-            return redirect(url_for('bp_main.temporarily_down'))
+# @bp_users.before_request
+# def before_request():
+#     logger_bp_users.info("- in bp_users.before_request ")
+#     ###### Keeps user logged in 31 days ########
+#     session.permanent = True
+#     current_app.permanent_session_lifetime = datetime.timedelta(days=31)
+#     session.modified = True
+#     logger_bp_users.info(f"!--> current_app.permanent_session_lifetime: {current_app.permanent_session_lifetime}")
+#     ###### END Keeps user logged in 31 days ######## 
+#     ###### TEMPORARILY_DOWN: redirects to under construction page ########
+#     if os.environ.get('TEMPORARILY_DOWN') == '1':
+#         if request.url != request.url_root + url_for('bp_main.temporarily_down')[1:]:
+#             # logger_bp_users.info("*** (logger_bp_users) Redirected ")
+#             logger_bp_users.info(f'- request.referrer: {request.referrer}')
+#             logger_bp_users.info(f'- request.url: {request.url}')
+#             return redirect(url_for('bp_main.temporarily_down'))
 
-# #This is to get the security headers on home page
-# @bp_users.after_request
-# def set_secure_headers(response):
-#     secure_headers.framework.flask(response)
-#     return response
+
 
 @bp_users.route('/login', methods = ['GET', 'POST'])
 def login():
     print('- in login')
     if current_user.is_authenticated:
         return redirect(url_for('bp_main.user_home'))
+    
+    logger_bp_users.info(f'- in login route')
+
     page_name = 'Login'
     if request.method == 'POST':
         # session.permanent = True
@@ -77,7 +76,7 @@ def login():
         print(f"formDict: {formDict}")
         email = formDict.get('email')
 
-        user = sess.query(Users).filter_by(email=email).first()
+        user = sess_usersquery(Users).filter_by(email=email).first()
 
         # verify password using hash
         password = formDict.get('password')
@@ -93,7 +92,7 @@ def login():
             else:
                 flash('Must enter password', 'warning')
         # elif formDict.get('btn_login_as_guest'):
-        #     user = sess.query(Users).filter_by(id=2).first()
+        #     user = sess_usersquery(Users).filter_by(id=2).first()
         #     login_user(user)
 
         #     return redirect(url_for('dash.dashboard', dash_dependent_var='steps'))
@@ -112,7 +111,7 @@ def register():
         formDict = request.form.to_dict()
         new_email = formDict.get('email')
 
-        check_email = sess.query(Users).filter_by(email = new_email).all()
+        check_email = sess_usersquery(Users).filter_by(email = new_email).all()
 
         logger_bp_users.info(f"check_email: {check_email}")
 
@@ -122,8 +121,8 @@ def register():
 
         hash_pw = bcrypt.hashpw(formDict.get('password').encode(), salt)
         new_user = Users(email = new_email, password = hash_pw)
-        sess.add(new_user)
-        sess.commit()
+        sess_usersadd(new_user)
+        sess_userscommit()
 
         # # /check_invite_json
         # headers = {'Content-Type': 'application/json'}
@@ -162,7 +161,7 @@ def reset_password():
     if request.method == 'POST':
         formDict = request.form.to_dict()
         email = formDict.get('email')
-        user = sess.query(Users).filter_by(email=email).first()
+        user = sess_usersquery(Users).filter_by(email=email).first()
         if user:
         # send_reset_email(user)
             logger_bp_users.info('Email reaquested to reset: ', email)
@@ -190,7 +189,7 @@ def reset_token(token):
         if formDict.get('password_text') != '':
             hash_pw = bcrypt.hashpw(formDict.get('password_text').encode(), salt)
             user.password = hash_pw
-            sess.commit()
+            sess_userscommit()
             flash('Password successfully updated', 'info')
             return redirect(url_for('bp_users.login'))
         else:

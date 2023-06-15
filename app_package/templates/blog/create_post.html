@@ -1,0 +1,165 @@
+{% extends "_layout.html" %}
+{% block title %} Post to Blog {% endblock %}
+{% block main %}
+<form method="POST" id="form_create_post" enctype=multipart/form-data></form>
+
+<div class="space_for_navbar_and_footer">
+
+<div class="create_post_super">
+  <div class="create_post">
+
+    <h2>Upload/Create Blog Post</h2>
+
+    <div class="a_div_right">
+      <a href="{{ url_for('main.home') }}" > Go home </a>
+    </div>
+    <div class="create_post_framing">
+      <div class="create_post_content">
+
+        <!-- <div class="blog_form_label_div"> -->
+
+
+
+        <label for="action">Step 1: Choose method:</label>
+        <select id="action" name="action" onchange='onSelectChangeHandler()'>
+          <!-- <option value="" selected disabled hidden>Choose here</option> -->
+          <option value="zipped_html">New Method: zipped file with index.html</option>
+          <option value="old_method_with_images">Old WS09 Method (currently not working)</option>
+        </select>
+        <br><br>
+
+
+        <div id="new_method" class="new_method">
+          <div class="description_text_super">
+            <div class="description_text">
+              The *new* method:
+
+              This upload assumes a compressed file is being submitted with the main page 'index.html'. There could be
+              folder(s)
+              with images.
+
+              If you wish to embed another template you'll need to enter it manually with the double curly's include
+              "template_name"
+              close double curly's.
+            </div><!--description_text-->
+
+          </div><!-- description_text_super -->
+
+          <div id="new_method_inputs">
+
+            <div class="new_method_input_file">
+              Step 2: Upload MS Word document saved as html:
+              <input class="form-control" type="file" form="form_create_post" name="new_method" accept=".zip"
+                placeholder=".html">
+
+            </div><!-- blog_form_input_div -->
+            <div class="new_method_input_source_dropdown">
+              <label for="action">Step 3: Where did index.html come from?</label>
+              <select id="action" name="index_html_source" form="form_create_post" required>
+                <option value="" selected disabled hidden>Choose here</option>
+                <option value="ms_word">MS Word converted to html</option>
+                <option value="original_html">Originally html</option>
+              </select>
+            </div><!-- new_method_input_source_dropdown-->
+
+
+          </div><!-- new_method_inputs -->
+
+        </div><!-- new_method -->
+
+
+        <div id="old_ws_method" class="old_ws_method_div">
+          <div id="old_ws_method_form">
+            *** Not working ***
+
+            Upload MS Word document saved as html:
+            <div class="old_method_input_div">
+
+              <input class="form-control" type="file" form="form01" name="old_method_html" accept=".html"
+                placeholder=".html">
+
+            </div><!-- old_method_input_div -->
+
+
+            Upload .zip file of images that belong to html file above:
+            <div class="old_method_input_div">
+              <input class="form-control" type="file" form="form01" name="old_method_zip" accept=".zip"
+                placeholder="if any images from a .zip">
+            </div><!-- old_method_input_div -->
+
+
+
+          </div><!-- old_ws_method_form -->
+        </div><!-- old_ws_method -->
+
+
+        <div class="blog_form_bottom_buttons_and_progress">
+
+          <div class="button_div_right">
+            <input onclick="update()" type="submit" value="Upload" class="btn btn-primary btn_custom"
+              form="form_create_post">
+          </div>
+
+          <div class="progress_div">
+            Upload Progress Bar
+            <div class="Progress_Status" id="Progress_Status">
+              <div class="progress-bar progress-bar-striped" id="myprogressBar" role="progressbar"></div>
+            </div><!-- Progress_Status -->
+          </div><!-- progress_div -->
+
+        </div><!-- blog_form_bottom_buttons_and_progress -->
+
+
+      </div><!-- create_post_content (child of flex)-->
+    </div><!-- create_post_framing (flex)-->
+
+
+    <script>
+      function onSelectChangeHandler() {
+        var val = document.getElementById("action").value;
+
+        switch (val) {
+          case "old_method_with_images":
+            document.getElementById("old_ws_method").style.display = "block";
+            document.getElementById("new_method").style.display = "none";
+            // document.getElementById("delete").style.display = "none";
+            console.log("Add word converted to html");
+            break;
+
+          case "zipped_html":
+            document.getElementById("old_ws_method").style.display = "none";
+            document.getElementById("new_method").style.display = "block";
+            // document.getElementById("delete").style.display = "none";
+            console.log("Add html file");
+            break;
+
+
+        }
+      }
+
+
+    </script>
+
+    <script>
+
+      function update() {
+        var element = document.getElementById("myprogressBar");
+        var width = 10;
+        var identity = setInterval(scene, 10);
+        function scene() {
+          if (width >= 100) {
+            clearInterval(identity);
+          } else {
+            width++;
+            element.style.width = width + '%';
+          }
+        }
+      }
+    </script>
+
+
+  </div><!-- create_post (child of flex)-->
+</div><!-- create_post_super (flex)-->
+
+</div><!-- space_for_navbar_and_footer -->
+{% endblock %}

@@ -27,43 +27,45 @@ logger_bp_main.addHandler(stream_handler)
 
 
 
-#This is to get the security headers on home page
-@bp_main.after_request
-def set_secure_headers(response):
-    secure_headers.framework.flask(response)
-    print("- in @bp_main.after_request")
-    # print(response)
-    # print(dir(response))
-    # print("----headers-----")
-    # print(response.headers)
-    # print("---------")
-    # try:
+# #This is to get the security headers on home page
+# @bp_main.after_request
+# def set_secure_headers(response):
+#     secure_headers.framework.flask(response)
+#     print("- in @bp_main.after_request")
+#     # print(response)
+#     # print(dir(response))
+#     # print("----headers-----")
+#     # print(response.headers)
+#     # print("---------")
+#     # try:
         
-    #     print("----data-----")
+#     #     print("----data-----")
         
-    #     print(response.data)
-    #     print("---------")
-    # except:
-    #     print("----> no data")
+#     #     print(response.data)
+#     #     print("---------")
+#     # except:
+#     #     print("----> no data")
 
-    return response
+#     return response
 
 
-@bp_main.before_request
-def before_request():
-    logger_bp_main.info(f"- in bp_main.before_request route --")
-    ###### TEMPORARILY_DOWN: redirects to under construction page ########
-    if os.environ.get('TEMPORARILY_DOWN') == '1':
-        if request.url != request.url_root + url_for('bp_main.temporarily_down')[1:]:
-            logger_bp_main.info(f'- request.referrer: {request.referrer}')
-            logger_bp_main.info(f'- request.url: {request.url}')
-            return redirect(url_for('bp_main.temporarily_down'))
+# @bp_main.before_request
+# def before_request():
+#     logger_bp_main.info(f"- in bp_main.before_request route --")
+#     ###### TEMPORARILY_DOWN: redirects to under construction page ########
+#     if os.environ.get('TEMPORARILY_DOWN') == '1':
+#         if request.url != request.url_root + url_for('bp_main.temporarily_down')[1:]:
+#             logger_bp_main.info(f'- request.referrer: {request.referrer}')
+#             logger_bp_main.info(f'- request.url: {request.url}')
+#             return redirect(url_for('bp_main.temporarily_down'))
 
 @bp_main.route("/", methods=["GET","POST"])
 def home():
     logger_bp_main.info(f"-- in home page route --")
+    on_home_page = True
 
-    return render_template('main/home.html', site_key=current_app.config.get('SITE_KEY_CAPTCHA'))
+    return render_template('main/home.html', site_key=current_app.config.get('SITE_KEY_CAPTCHA'),
+        on_home_page = on_home_page)
 
 
 # Custom static data
