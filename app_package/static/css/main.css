@@ -11734,13 +11734,13 @@ body {
   width: 100%;
   padding-left: 1rem;
   display: flex;
-  justify-content: center;
+  justify-content: start;
 }
 .home_page .contact_info_div {
   padding-left: 1rem;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: start;
 }
 .home_page .contact_form_div {
   padding: 1rem;

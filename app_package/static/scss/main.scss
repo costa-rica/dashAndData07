@@ -153,7 +153,6 @@ body {
     width:100%;
   }
 
-
   li {
     // padding:1rem;
     list-style-type: none;
@@ -190,13 +189,16 @@ body {
   .home_row_four_contact {
     display: flex;
     flex-wrap: wrap;
+    // justify-content: start;
+    // background-color: green;
+    // align-items: start;
   }
 
   .contact_title_div {
     width: 100%;
     padding-left: 1rem;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     
   }
 
@@ -204,7 +206,7 @@ body {
     padding-left: 1rem;
     width:100%;
     display: flex;
-    justify-content: center;
+    justify-content: start;
   }
 
   .contact_form_div {
