@@ -7,6 +7,12 @@
 
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <script>
+    function onSubmit(token) {
+      document.getElementById("send_message_form").submit();
+    }
+  </script>
 
 
 
