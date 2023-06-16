@@ -11173,7 +11173,6 @@ legend {
   .navbar_super .navbar_custom {
     justify-content: center;
     height: fit-content;
-    /* Navbar Left */
     /* OLD Nav bar */
   }
   .navbar_super .navbar_custom .nav_left {
@@ -11198,6 +11197,7 @@ legend {
     display: flex;
     justify-content: flex-end;
     background: none;
+    height: var(--nav-height);
   }
   .navbar_super .navbar_custom .nav_right nav ul {
     display: flex;
