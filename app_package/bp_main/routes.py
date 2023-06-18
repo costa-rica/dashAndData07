@@ -9,6 +9,7 @@ import requests
 from app_package.bp_main.utils import send_confirm_email, send_message_to_nick
 
 bp_main = Blueprint('bp_main', __name__)
+# sess_users = dict_sess['sess_users']
 
 formatter = logging.Formatter('%(asctime)s:%(name)s:%(message)s')
 formatter_terminal = logging.Formatter('%(asctime)s:%(filename)s:%(name)s:%(message)s')
@@ -31,23 +32,8 @@ logger_bp_main.addHandler(stream_handler)
 @bp_main.after_request
 def set_secure_headers(response):
     secure_headers.framework.flask(response)
-    print("- in @bp_main.after_request")
-    # print(response)
-    # print(dir(response))
-    # print("----headers-----")
-    # print(response.headers)
-    # print("---------")
-    # try:
-        
-    #     print("----data-----")
-        
-    #     print(response.data)
-    #     print("---------")
-    # except:
-    #     print("----> no data")
-
+    logger_bp_main.info("- in @bp_main.after_request")
     return response
-
 
 @bp_main.before_request
 def before_request():
@@ -70,11 +56,7 @@ def home():
 
 # Custom static data
 @bp_main.route('/<dir_name>/<filename>')
-def file_DB_ROOT(dir_name, filename):
-    # print("-- enterd custom static -")
-    # name_no_spaces = ""
-    # dir_name = 
-    
+def file_DB_ROOT(dir_name, filename):   
     return send_from_directory(os.path.join(current_app.config.get('DB_ROOT'),"files", dir_name), filename)
 
 
@@ -84,7 +66,6 @@ def file_DB_ROOT(dir_name, filename):
 @bp_main.route('/get_aux_file_from_dir/<aux_dir_name>/<filename>')
 def get_aux_file_from_dir(aux_dir_name, filename):
     logger_bp_main.info(f"- in get_aux_file_from_dir route")
-    
     return send_from_directory(os.path.join(current_app.config.get('DB_ROOT'),"auxilary", aux_dir_name), filename)
 
 

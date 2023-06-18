@@ -15,6 +15,19 @@
   </script>
 
 
+<!-- Datatable -->
+<script src="../static/DataTables/jQuery-3.6.0/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../static/DataTables/DataTables-1.13.4/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="../static/customAndOldFiles/css/responsive.dataTables.min.css">
+<!-- <script src="../static/customAndOldFiles/js/moment.min.js"></script> -->
+<script type="text/javascript" src="../static/customAndOldFiles/js/jquery.dataTables-1.1.20.min.js"></script>
+<script type="text/javascript" src="../static/customAndOldFiles/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="../static/customAndOldFiles/js/datetime.js"></script>
+
+<!-- for modals-->
+<script src="../static/bootstrap-5.2.3/dist/js/bootstrap.min.js"></script>
+
+
 
   <!-- <link rel="icon"  href="/static/images/favicon.ico"> -->
   <link rel="icon"  href="{{ url_for('bp_main.get_aux_file_from_dir', aux_dir_name='dashAndDataV3_teal', filename= 'favicon.ico') }}">
@@ -71,6 +84,7 @@
   
             {% if current_user.id %}
             <li class="nav-item li_primary"><a class="nav-link" href="{{ url_for('bp_users.logout') }}">Logout</a></li>
+            <li class=""><a class="nav-link" href="{{ url_for('bp_blog.index') }}">Blog</a></li>
             {% else %}
             
             <li class=""><a class="fit_text" href="{{ url_for('bp_users.login') }}">Data Tools</a></li>

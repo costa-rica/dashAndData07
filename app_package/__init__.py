@@ -6,8 +6,8 @@ from logging.handlers import RotatingFileHandler
 from pytz import timezone
 from datetime import datetime
 # from dd07_models import login_manager
-from dd07_models import login_manager, sess_users, sess_cage, sess_bls, \
-    engine_users, engine_cage, engine_bls, text, Base, \
+from dd07_models import login_manager, dict_sess, \
+    dict_engine, text, dict_base, \
     Users, BlogPosts, CageCompanies, IndustryNames, \
     IndustryValues, CommodityNames, CommodityValues
 from flask_mail import Mail
@@ -98,21 +98,21 @@ def create_app(config_for_flask = config):
     if os.path.exists(os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_USERS'))):
         logger_init.info(f"db already exists: {os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_USERS'))}")
     else:
-        Base.metadata.create_all(engine_users)
+        dict_base['Base_users'].metadata.create_all(dict_engine['engine_users'])
         logger_init.info(f"NEW db created: {os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_USERS'))}")
 
     #Build DB_NAME_CAGE
     if os.path.exists(os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_CAGE'))):
         logger_init.info(f"db already exists: {os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_CAGE'))}")
     else:
-        Base.metadata.create_all(engine_cage)
+        dict_base['Base_cage'].metadata.create_all(dict_engine['engine_cage'])
         logger_init.info(f"NEW db created: {os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_CAGE'))}")
 
     #Build DB_NAME_BLS
     if os.path.exists(os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_BLS'))):
         logger_init.info(f"db already exists: {os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_BLS'))}")
     else:
-        Base.metadata.create_all(engine_bls)
+        dict_base['Base_bls'].metadata.create_all(dict_engine['engine_bls'])
         logger_init.info(f"NEW db created: {os.path.join(config_for_flask.DB_ROOT,os.environ.get('DB_NAME_BLS'))}")
 
     logger_init.info(f"- SQL_URI_USERS: sqlite:///{config_for_flask.DB_ROOT}{os.environ.get('DB_NAME_USERS')}")

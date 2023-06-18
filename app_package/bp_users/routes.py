@@ -8,8 +8,7 @@ import logging
 from logging.handlers import RotatingFileHandler
 import os
 import json
-from dd07_models import sess_users, sess_cage, sess_bls, engine_users, engine_cage, engine_bls, text, Base, \
-    Users
+from dd07_models import dict_sess, dict_engine, text, Users
 
 from app_package.bp_users.utils import send_reset_email, send_confirm_email
 import datetime
@@ -40,7 +39,7 @@ salt = bcrypt.gensalt()
 
 
 bp_users = Blueprint('bp_users', __name__)
-
+sess_users = dict_sess['sess_users']
 
 # @bp_users.before_request
 # def before_request():
@@ -65,7 +64,7 @@ bp_users = Blueprint('bp_users', __name__)
 def login():
     print('- in login')
     if current_user.is_authenticated:
-        return redirect(url_for('bp_main.user_home'))
+        return redirect(url_for('bp_blog.blog_user_home'))
     
     logger_bp_users.info(f'- in login route')
 
@@ -76,7 +75,7 @@ def login():
         print(f"formDict: {formDict}")
         email = formDict.get('email')
 
-        user = sess_usersquery(Users).filter_by(email=email).first()
+        user = sess_users.query(Users).filter_by(email=email).first()
 
         # verify password using hash
         password = formDict.get('password')
@@ -92,7 +91,7 @@ def login():
             else:
                 flash('Must enter password', 'warning')
         # elif formDict.get('btn_login_as_guest'):
-        #     user = sess_usersquery(Users).filter_by(id=2).first()
+        #     user = sess_users.query(Users).filter_by(id=2).first()
         #     login_user(user)
 
         #     return redirect(url_for('dash.dashboard', dash_dependent_var='steps'))
@@ -111,7 +110,7 @@ def register():
         formDict = request.form.to_dict()
         new_email = formDict.get('email')
 
-        check_email = sess_usersquery(Users).filter_by(email = new_email).all()
+        check_email = sess_users.query(Users).filter_by(email = new_email).all()
 
         logger_bp_users.info(f"check_email: {check_email}")
 
@@ -121,8 +120,8 @@ def register():
 
         hash_pw = bcrypt.hashpw(formDict.get('password').encode(), salt)
         new_user = Users(email = new_email, password = hash_pw)
-        sess_usersadd(new_user)
-        sess_userscommit()
+        sess_users.add(new_user)
+        sess_users.commit()
 
         # # /check_invite_json
         # headers = {'Content-Type': 'application/json'}
@@ -161,7 +160,7 @@ def reset_password():
     if request.method == 'POST':
         formDict = request.form.to_dict()
         email = formDict.get('email')
-        user = sess_usersquery(Users).filter_by(email=email).first()
+        user = sess_users.query(Users).filter_by(email=email).first()
         if user:
         # send_reset_email(user)
             logger_bp_users.info('Email reaquested to reset: ', email)
@@ -189,7 +188,7 @@ def reset_token(token):
         if formDict.get('password_text') != '':
             hash_pw = bcrypt.hashpw(formDict.get('password_text').encode(), salt)
             user.password = hash_pw
-            sess_userscommit()
+            sess_users.commit()
             flash('Password successfully updated', 'info')
             return redirect(url_for('bp_users.login'))
         else:
