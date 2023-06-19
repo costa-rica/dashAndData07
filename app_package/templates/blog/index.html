@@ -11,7 +11,11 @@
 
     <div class="grid5_blog ">
         <div class="std_framing">
-
+          {% if current_user.is_authenticated %}
+          <div class="div_link_to_rest">
+            <a href="{{ url_for('bp_blog.blog_user_home') }}" > Blog User Home </a>
+          </div>
+          {% endif %}
             <div class="div_link_to_rest">
                 <a href="{{ url_for('bp_main.home') }}" id="go_home_link"> Go Home</a>
               </div>
