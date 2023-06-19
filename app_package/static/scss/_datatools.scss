@@ -1,81 +1,76 @@
-
 /*Data Tools*/
 section.data_tools_main {
-  // padding: 150px 0 60px 5px;
-  // background-color: var(--bs-gray-700);
 
-  h1 {
-      margin-bottom:1em;
-  }
-  ul{
-      list-style-type: none;
-      padding-left:0;
-      a {text-decoration:none;}
-  }
-  li{
-      margin: 0 0 3em 0;
-      border-radius: 2em;
-      padding: 1em;
-      width: 90%;
-  }
-  li:nth-child(odd) {
-      background-color: var(--bs-secondary);
-      a {
-          text-decoration:none;
-          color: black;
-          width:100%;}
-      a:hover{color: var(--bs-dark);}
-  }
+    h1 {margin-bottom: 1em;}
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+        a {text-decoration: none;}
+    }
 
-  li:nth-child(even) {
-      background-color: var(--bs-primary);
-      // margin: 0 0 3em 3em;
-      // border-radius: 2em;
-      // padding: 2em;
-      // width: 100%;
-  }
-  li:hover{
-      background-color: var(--bs-gray-500);
-      color: var(--bs-dark);
-      a {color: var(--bs-dark);}
-  }
+    li {
+        margin: 0 0 3em 0;
+        border-radius: 2em;
+        padding: 1em;
+        width: 90%;
+    }
 
-  .data_tool_title{
-      display: flex;
-      position:relative;
-  }
-  .title_div{width: 90%}
-  .data_tools_description{width:80%;}
-  .logo_div{
-      position: absolute;
-      right: 0;
-      padding: .8em .8em .8em .8em;
-  }
-  #logo_div_km{
-      background-color: var(--bs-gray-400);
-      border-radius: 50%;
-      img {width:120px;margin: 0 0 20px 0;}
-      
-  }
-  #logo_div_cbc{
-      right: 2em;
-      top: -2em;
-      img {
-          border-radius: 50%;
-      }
-  }
-  #logo_div_wsh{
-      right: 2em;
-      top: -2em;
-      img {
-          border-radius: 50%;
-          width: 130px;
-      }
-  }
-  #logo_div_bls{
-      img {
-          border-radius: .75em;
-          width:300px;
-      }
-  }
+    li:nth-child(odd) {
+        background-color: var(--bs-secondary);
+        a {
+            text-decoration: none;
+            color: black;
+            width: 100%;
+        }
+        a:hover { color: var(--bs-dark);}
+    }
+
+    li:nth-child(even) {
+        background-color: var(--bs-primary);
+    }
+
+    li:hover {
+        background-color: var(--bs-gray-500);
+        color: var(--bs-dark);
+        a {
+            color: var(--bs-dark);
+        }
+    }
+
+    .data_tool_title {
+        display: flex;
+    }
+
+    .title_div {
+        display: flex;
+    }
+
+    .title_div {
+        flex: 2;
+        align-items: center;
+    }
+
+    .logo_div {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        img {
+            max-width: 6rem;
+        }
+    }
+    #logo_div_km {
+        clip-path: inset(10% 0 10% 0 round 1rem);// <-- Good corping property
+        background-color: var(--bs-gray-400);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    /*Data Tools*/
+section.data_tools_main {
+    .logo_div {
+        img {
+            max-width: 8rem;
+        }
+    }
+}
 }

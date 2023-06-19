@@ -11657,47 +11657,33 @@ section.data_tools_main li:hover a {
 }
 section.data_tools_main .data_tool_title {
   display: flex;
-  position: relative;
 }
 section.data_tools_main .title_div {
-  width: 90%;
+  display: flex;
 }
-section.data_tools_main .data_tools_description {
-  width: 80%;
+section.data_tools_main .title_div {
+  flex: 2;
+  align-items: center;
 }
 section.data_tools_main .logo_div {
-  position: absolute;
-  right: 0;
-  padding: 0.8em 0.8em 0.8em 0.8em;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+section.data_tools_main .logo_div img {
+  max-width: 6rem;
 }
 section.data_tools_main #logo_div_km {
+  clip-path: inset(10% 0 10% 0 round 1rem);
   background-color: var(--bs-gray-400);
-  border-radius: 50%;
-}
-section.data_tools_main #logo_div_km img {
-  width: 120px;
-  margin: 0 0 20px 0;
-}
-section.data_tools_main #logo_div_cbc {
-  right: 2em;
-  top: -2em;
-}
-section.data_tools_main #logo_div_cbc img {
-  border-radius: 50%;
-}
-section.data_tools_main #logo_div_wsh {
-  right: 2em;
-  top: -2em;
-}
-section.data_tools_main #logo_div_wsh img {
-  border-radius: 50%;
-  width: 130px;
-}
-section.data_tools_main #logo_div_bls img {
-  border-radius: 0.75em;
-  width: 300px;
 }
 
+@media screen and (min-width: 768px) {
+  /*Data Tools*/
+  section.data_tools_main .logo_div img {
+    max-width: 8rem;
+  }
+}
 :root {
   --nav-height: 123px;
   --website_theme_font_color_light: white;

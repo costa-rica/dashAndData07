@@ -21,11 +21,13 @@
                         <h2>NHTSA Recalls and Investigations Dashboard</h2>
                     </div>
                     <div class="logo_div" id=logo_div_km>
-                        <img id="km-logo" src="{{ url_for('bp_main.get_aux_file_from_dir', aux_dir_name='images_datatools',filename='kmLogo.png')}}" alt="KM logo">
+                        <!-- <img id="km-logo" src="{{ url_for('bp_main.get_aux_file_from_dir', aux_dir_name='images_datatools',filename='kmLogo.png')}}" alt="KM logo"> -->
+                        <img id="km-logo" src="{{ url_for('bp_main.get_aux_images_datatools',dir_name='favicon_kmLogoSquare', filename='android-chrome-512x512.png')}}" alt="KM logo">
+                        
                         
                     </div>
 
-                </div>
+                </div><!-- data_tool_title -->
                 <div class="data_tools_description">
                     National Highway Traffic Safety Administration (NHTSA) lists all recalls and investigation of US
                      automotive manufactures vehicles. This application stores all records in a database and allows users 
@@ -43,12 +45,13 @@
     <li>
         <div class="data_tool_div "><a href="https://what-sticks.com">
             <div class="data_tool_title">
-                <div class="data_tool_title">
+                <div class="title_div">
                     <h2>What Sticks Health</h2>
                 </div>
                 <div class="logo_div" id="logo_div_wsh">
                     
-                    <img id="wsh-logo" src="{{ url_for('bp_main.get_aux_file_from_dir', aux_dir_name='images_datatools',filename='tgelogo20210830_v2.png')}}" alt="CBC logo">
+                    <!-- <img id="wsh-logo" src="{{ url_for('bp_main.get_aux_file_from_dir', aux_dir_name='images_datatools',filename='tgelogo20210830_v2.png')}}" alt="CBC logo"> -->
+                    <img id="wsh-logo" src="{{ url_for('bp_main.get_aux_images_datatools',dir_name='favicon_wsLogoNoName', filename='android-chrome-512x512.png')}}" alt="CBC logo">
                 </div>
             </div>
 

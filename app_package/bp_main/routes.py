@@ -60,13 +60,18 @@ def file_DB_ROOT(dir_name, filename):
     return send_from_directory(os.path.join(current_app.config.get('DB_ROOT'),"files", dir_name), filename)
 
 
-
-
 # Custom static data - DIR_DB_AUXILARY (/_databases/dashAndData07/auxilary/<aux_dir_name>/<filename>)
 @bp_main.route('/get_aux_file_from_dir/<aux_dir_name>/<filename>')
 def get_aux_file_from_dir(aux_dir_name, filename):
     logger_bp_main.info(f"- in get_aux_file_from_dir route")
-    return send_from_directory(os.path.join(current_app.config.get('DB_ROOT'),"auxilary", aux_dir_name), filename)
+    return send_from_directory(os.path.join(current_app.config.get('DIR_DB_AUXILARY'), aux_dir_name), filename)
+
+
+# Custom static data - DIR_DB_AUXILARY (/_databases/dashAndData07/auxilary/<aux_dir_name>/<filename>)
+@bp_main.route('/get_aux_images_datatools/<dir_name>/<filename>')
+def get_aux_images_datatools(dir_name, filename):
+    logger_bp_main.info(f"- in get_aux_images_datatools route")
+    return send_from_directory(os.path.join(current_app.config.get('DIR_DB_AUXILARY'), 'images_datatools',dir_name), filename)
 
 
 
