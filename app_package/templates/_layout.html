@@ -84,12 +84,12 @@
   
             {% if current_user.id %}
             <li class="nav-item li_primary"><a class="nav-link" href="{{ url_for('bp_users.logout') }}">Logout</a></li>
-            <li class=""><a class="nav-link" href="{{ url_for('bp_blog.index') }}">Blog</a></li>
-            {% else %}
-            
-            <li class=""><a class="fit_text" href="{{ url_for('bp_users.login') }}">Data Tools</a></li>
-            <li class=""><a class="nav-link" href="{{ url_for('bp_blog.index') }}">Blog</a></li>
             {% endif %}<!-- if current_user.id -->
+            
+            <li class=""><a class="fit_text" href="{{ url_for('bp_main.dataTools') }}">Data Tools</a></li>
+            <li class=""><a class="nav-link" href="{{ url_for('bp_blog.index') }}">Blog</a></li>
+            
+            
 
 
 
@@ -172,6 +172,9 @@
   <div class=footer_right>
     
     <div class="footer_link_item contact_nick" >nick@dashanddata.com</div>
+    <div class="footer_link_item contact_nick" ><a class="nav-link" href="{{ url_for('bp_main.about_dd') }}">About</a></div>
+    
+
     <!-- <a class="footer_link_item" href="{{ url_for('bp_main.home') }}">Privacy</a> -->
   </div>
 </footer>

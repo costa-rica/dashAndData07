@@ -237,40 +237,45 @@ def create_post():
 
             # find root html file for post
             for file_name in os.listdir(dest):
+                
                 if file_name.endswith('.html'):
                     post_html_filename = file_name
-                    directory_path =  os.path.join(current_app.config.get('DIR_DB_AUX_BLOG_POSTS'), 
+                    post_html_file_name_and_path =  os.path.join(current_app.config.get('DIR_DB_AUX_BLOG_POSTS'), 
                                             new_post_dir_name,post_html_filename)
-                    post_html_filename = sanitize_directory_name(directory_path)
+                    post_html_filename = sanitize_directory_name(post_html_file_name_and_path)
+                if os.path.isdir(os.path.join(dest,file_name)) and os.path.join(dest,file_name)[-4:] == '.fld':
+                    post_images_dir_name_and_path = os.path.join(dest,file_name)
+                    post_images_dir_name = sanitize_directory_name(post_images_dir_name_and_path)
 
-
+            
             # TODO: Rename folder containig images
             # check for spaces adn extra charaters
             ## if exists replace and rename directory
-            print("**** ")
-            zip_folder_name_nospaces_no_dot_zip = zip_folder_name_nospaces[:4]
-            print("zip_folder_name_nospaces_no_dot_zip: ", zip_folder_name_nospaces_no_dot_zip)
-            directory_path =  os.path.join(new_blog_dir_fp, zip_folder_name_nospaces_no_dot_zip, unzipped_files_dir_name)
-            directory_path =  os.path.join(current_app.config.get('DIR_DB_AUX_BLOG_POSTS'), 
-                                            new_post_dir_name,unzipped_files_dir_name[:-1])
-            unzipped_files_dir_name = sanitize_directory_name(directory_path)
+            # print("*** Sanatize .fld Name ***")
+            # zip_folder_name_nospaces_no_dot_zip = zip_folder_name_nospaces[:4]
+            # print("zip_folder_name_nospaces_no_dot_zip: ", zip_folder_name_nospaces_no_dot_zip)
+            # directory_path =  os.path.join(new_blog_dir_fp, zip_folder_name_nospaces_no_dot_zip, unzipped_files_dir_name)
+            # directory_path =  os.path.join(current_app.config.get('DIR_DB_AUX_BLOG_POSTS'), 
+            #                                 new_post_dir_name,unzipped_files_dir_name[:-1])
+            # unzipped_files_dir_name = sanitize_directory_name(directory_path)
             
             print("Adding unzipped_files_dir_name: ", unzipped_files_dir_name)
-            print("******")
-            new_blogpost.images_dir_name = unzipped_files_dir_name
+            print("*** END sanatize .fld ***")
+            
 
 
             # beautiful soup to search and replace img src with {{ url_for('custom_static', ___, __ ,__)}}
-            new_index_text = replace_img_src_jinja(os.path.join(new_blog_dir_fp,post_html_filename), unzipped_files_dir_name)
+            # new_index_text = replace_img_src_jinja(os.path.join(new_blog_dir_fp,post_html_filename), unzipped_files_dir_name)
+            new_index_text = replace_img_src_jinja(os.path.join(new_blog_dir_fp,post_html_filename), post_images_dir_name)
             if new_index_text == "Error opening index.html":# cannot imagine how this is possible, but we'll leave it.
                 flash(f"Missing index.html? There was an problem trying to opening {os.path.join(new_blog_dir_fp,post_html_filename)}.", "warning")
                 # return redirect(request.url)
                 return redirect(url_for('bp_blog.blog_delete', post_id=new_blog_id))
 
-            # remove existing new_blog_dir_fp, index.html
+            # remove existing post_html_filename
             os.remove(os.path.join(new_blog_dir_fp,post_html_filename))
 
-            # write a new index.html with new_idnex_text
+            # write a new index.html with new code that references images in image folder
             index_html_writer = open(os.path.join(new_blog_dir_fp,post_html_filename), "w")
             index_html_writer.write(new_index_text)
             index_html_writer.close()
@@ -278,9 +283,7 @@ def create_post():
             # delete compressed file
             shutil.rmtree(temp_zip_db_fp)
 
-            # update new_blogpost.post_html_filename = post_id_post/index.html
-            # new_blogpost.post_html_filename = os.path.join(new_post_dir_name,post_html_filename)
-            
+            new_blogpost.images_dir_name = post_images_dir_name
             new_blogpost.word_doc_to_html_filename = post_html_filename
             new_blogpost.title = get_title(os.path.join(new_blog_dir_fp,post_html_filename), "origin_from_word")
             sess_users.commit()

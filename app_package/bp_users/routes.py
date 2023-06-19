@@ -85,7 +85,7 @@ def login():
                 if bcrypt.checkpw(password.encode(), user.password):
                     login_user(user)
 
-                    return redirect(url_for('bp_main.user_home'))
+                    return redirect(url_for('bp_blog.blog_user_home'))
                 else:
                     flash('Password or email incorrectly entered', 'warning')
             else:

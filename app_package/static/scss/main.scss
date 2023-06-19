@@ -3,12 +3,15 @@
 @use "users";
 @use "admin";
 @use "blog";
+@use "datatools";
 
 :root {
   --nav-height: 123px;
   // --table-chart-width: 100%;
   --website_theme_font_color_light: white;
+  --website_theme_font_color_a_light: var(--bs-gray-300);
   --website_theme_font_color_dark: black;
+  --website_theme_font_color_a_dark: var(--bs-gray-600);
   --website_theme_fun_color: #20C997;
   --website_max_width: 70rem;
 }
@@ -73,6 +76,7 @@ body {
   z-index: -1;
 }
 
+/* HOME */
 .home_page {
 
   .hero_top {
@@ -231,6 +235,12 @@ body {
   }
 }
 
+/* About */
+section.about_main{
+  color:var(--website_theme_font_color_dark);
+  a{color: var(--website_theme_font_color_a_dark);}
+  a:hover{color: var(--website_theme_fun_color);}
+}
 
 @media screen and (min-width: 768px) {
   .home_page {

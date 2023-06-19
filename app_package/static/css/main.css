@@ -11333,6 +11333,15 @@ legend {
 .view_post_super .view_post {
   width: calc(100% - 2rem);
 }
+.view_post_super .view_post a {
+  color: var(--website_theme_font_color_a_dark);
+}
+.view_post_super .view_post a:hover {
+  color: var(--website_theme_fun_color);
+}
+.view_post_super .view_post .MsoNormal span img {
+  text-align: center;
+}
 .view_post_super .post {
   padding: 2rem 0 0 0;
 }
@@ -11349,7 +11358,7 @@ legend {
   color: var(--website_theme_font_color_dark);
 }
 .create_post_super a {
-  color: var(--bs-gray-700);
+  color: var(--website_theme_font_color_a_dark);
 }
 .create_post_super a:hover {
   color: var(--website_theme_fun_color);
@@ -11426,6 +11435,12 @@ legend {
 .blog_home_super .blog_home {
   width: calc(100% - 15rem);
 }
+.blog_home_super .blog_home a {
+  color: var(--website_theme_font_color_a_dark);
+}
+.blog_home_super .blog_home a:hover {
+  color: var(--website_theme_fun_color);
+}
 .blog_home_super .post_btn_div {
   display: flex;
   justify-content: end;
@@ -11483,6 +11498,12 @@ legend {
   font-size: 2rem;
   display: flex;
   justify-content: center;
+}
+.edit_post_super a {
+  color: var(--website_theme_font_color_a_dark);
+}
+.edit_post_super a:hover {
+  color: var(--website_theme_fun_color);
 }
 .edit_post_super .blog_form_div {
   width: calc(100% - 5rem);
@@ -11578,7 +11599,10 @@ legend {
   text-align: right;
 }
 .post_index .blogpost_title {
-  font-size: var(--normal_font_size);
+  font-size: x-large;
+}
+.post_index .blogpost_description {
+  color: var(--website_theme_font_color_a_light);
 }
 
 .view_post_super {
@@ -11593,10 +11617,93 @@ legend {
     width: calc(100% - 10rem);
   }
 }
+/*Data Tools*/
+section.data_tools_main h1 {
+  margin-bottom: 1em;
+}
+section.data_tools_main ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+section.data_tools_main ul a {
+  text-decoration: none;
+}
+section.data_tools_main li {
+  margin: 0 0 3em 0;
+  border-radius: 2em;
+  padding: 1em;
+  width: 90%;
+}
+section.data_tools_main li:nth-child(odd) {
+  background-color: var(--bs-secondary);
+}
+section.data_tools_main li:nth-child(odd) a {
+  text-decoration: none;
+  color: black;
+  width: 100%;
+}
+section.data_tools_main li:nth-child(odd) a:hover {
+  color: var(--bs-dark);
+}
+section.data_tools_main li:nth-child(even) {
+  background-color: var(--bs-primary);
+}
+section.data_tools_main li:hover {
+  background-color: var(--bs-gray-500);
+  color: var(--bs-dark);
+}
+section.data_tools_main li:hover a {
+  color: var(--bs-dark);
+}
+section.data_tools_main .data_tool_title {
+  display: flex;
+  position: relative;
+}
+section.data_tools_main .title_div {
+  width: 90%;
+}
+section.data_tools_main .data_tools_description {
+  width: 80%;
+}
+section.data_tools_main .logo_div {
+  position: absolute;
+  right: 0;
+  padding: 0.8em 0.8em 0.8em 0.8em;
+}
+section.data_tools_main #logo_div_km {
+  background-color: var(--bs-gray-400);
+  border-radius: 50%;
+}
+section.data_tools_main #logo_div_km img {
+  width: 120px;
+  margin: 0 0 20px 0;
+}
+section.data_tools_main #logo_div_cbc {
+  right: 2em;
+  top: -2em;
+}
+section.data_tools_main #logo_div_cbc img {
+  border-radius: 50%;
+}
+section.data_tools_main #logo_div_wsh {
+  right: 2em;
+  top: -2em;
+}
+section.data_tools_main #logo_div_wsh img {
+  border-radius: 50%;
+  width: 130px;
+}
+section.data_tools_main #logo_div_bls img {
+  border-radius: 0.75em;
+  width: 300px;
+}
+
 :root {
   --nav-height: 123px;
   --website_theme_font_color_light: white;
+  --website_theme_font_color_a_light: var(--bs-gray-300);
   --website_theme_font_color_dark: black;
+  --website_theme_font_color_a_dark: var(--bs-gray-600);
   --website_theme_fun_color: #20C997;
   --website_max_width: 70rem;
 }
@@ -11650,6 +11757,7 @@ body {
   z-index: -1;
 }
 
+/* HOME */
 .home_page .hero_top {
   background-color: var(--bs-gray-900);
   width: 100%;
@@ -11766,6 +11874,17 @@ body {
   display: flex;
   justify-content: end;
   padding-top: 1rem;
+}
+
+/* About */
+section.about_main {
+  color: var(--website_theme_font_color_dark);
+}
+section.about_main a {
+  color: var(--website_theme_font_color_a_dark);
+}
+section.about_main a:hover {
+  color: var(--website_theme_fun_color);
 }
 
 @media screen and (min-width: 768px) {

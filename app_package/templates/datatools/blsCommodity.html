@@ -1,0 +1,146 @@
+{% extends "_layout.html" %}
+
+{% block title %} BLS Commodity PPI {% endblock %}
+
+{% block main %}
+
+
+
+<div class="spacePageBorder">
+
+<h2 class="title">{{ siteTitle }}</h2>
+
+<div class="col-9">
+<p>This page uses a database created from the Bureau of Labor Statistics (BLS) which produces prices indexes for the U.S.
+The data from this site comes from the 
+	<a href="https://www.bls.gov/ppi/">Producer Price Indexes</a>. This page allows the user to build an excel spreadsheet 
+	with user defined indices, column headings and periodicity. 
+	The search bar below will filter on both ID and Title.</br>
+
+</p></div>
+<form action="#" method="POST" enctype="multipart/form-data" encoding="multipart/form-data">
+	<div class="row">
+	<div class="col-8">
+		<p class="textareaCaption">Select from the table below or enter Series ID's (comma seperated):</p>
+		{% if  textareaEntry %}
+		<textarea class="form-control " name="textareaEntry">{{ textareaEntry }}</textarea>
+		{% else %}
+		<textarea class="form-control" name="textareaEntry"></textarea>
+		{% endif %}
+	</div>
+	
+	<div class="col-2 downloadIndexButton">
+		<button type="submit" class="btn btn-primary" name="downloadButton" value="download"> Download Selection</button>
+	</div>
+	<div class="col-2 clearButton">
+		<button type="submit" class="btn" name="clearButton" value="clear">Clear Selection</button>
+	</div>
+	</div>
+	
+	<div class="row lightPadding">
+	<div class="metaSection ">
+		<p class="heading1"><b>Column Headings</b></p>
+		<div class="lightPadding ">
+			<ul>
+				<li>
+					<input class="form-check-input" type="checkbox" name="series_idCheckbox" value="checked" id="series_idCheckbox" {{ cs0 }}>
+					<label class="form-check-label" for="series_idCheckbox">Series ID</label>
+				</li>
+				<li>
+					<input class="form-check-input" type="checkbox" name="group_codeCheckbox" value="checked" id="group_codeCheckbox" {{ cs1 }}>
+					<label class="form-check-label" for="group_codeCheckbox">Group Code</label>
+				</li>
+				<li>
+					<input class="form-check-input" type="checkbox" name="item_codeCheckbox" value="checked" id="item_codeCheckbox" {{ cs2 }}>
+					<label class="form-check-label" for="item_codeCheckbox">Item Code</label>
+				</li>
+				<li>
+					<input class="form-check-input" type="checkbox" name="seasonalCheckbox" value="checked" id="seasonalCheckbox" {{ cs3 }}>
+					<label class="form-check-label" for="seasonalCheckbox">Seasonal</label>
+				</li>
+				<li>
+					<input class="form-check-input" type="checkbox" name="base_dateCheckbox" value="checked" id="base_dateCheckbox" {{ cs3 }}>
+					<label class="form-check-label" for="base_dateCheckbox">Base Date</label>
+				</li>
+				<li>
+					<input class="form-check-input" type="checkbox" name="series_titleCheckbox" value="checked" id="series_titleCheckbox" {{ cs5 }}>
+					<label class="form-check-label" for="series_titleCheckbox">Series Title</label>
+				</li>
+				<li>
+					<input class="form-check-input" type="checkbox" name="footnote_codesCheckbox" value="checked" id="footnote_codesCheckbox" {{ cs6 }}>
+					<label class="form-check-label" for="footnote_codesCheckbox">Footnote Codes</label>
+				</li>
+				<li>
+					<input class="form-check-input" type="checkbox" name="begin_yearCheckbox" value="checked" id="begin_yearCheckbox" {{ cs7 }}>
+					<label class="form-check-label" for="begin_yearCheckbox">Begin Year</label>
+				</li>
+				<li>
+					<input class="form-check-input" type="checkbox" name="begin_periodCheckbox" value="checked" id="begin_periodCheckbox" {{ cs8 }}>
+					<label class="form-check-label" for="begin_periodCheckbox">Begin Period</label>
+				</li>
+				<li>
+					<input class="form-check-input" type="checkbox" name="end_yearCheckbox" value="checked" id="end_yearCheckbox" {{ cs9 }}>
+					<label class="form-check-label" for="end_yearCheckbox">End Year</label>
+				</li>
+				<li>
+					<input class="form-check-input" type="checkbox" name="end_periodCheckbox" value="checked" id="end_periodCheckbox" {{ cs10 }}>
+					<label class="form-check-label" for="end_periodCheckbox">End Period</label>
+				</li>
+			</ul>
+	  </div>
+	</div>
+	</div>
+	
+	
+	
+	<div class="periodictySection lightPadding">
+		<p class="heading1"><b>Periodicity</b></p>
+		
+		<ul>
+			<li>
+				<input type="radio" name="periodicty" value="month" {{ cs11 }}>
+				<label for="month">Month</label>
+			</li>
+			<li>
+				<input type="radio" name="periodicty" value="quarter" {{ cs12 }}>
+				<label for="quarter">Quarter</label>
+			</li>
+			<li>
+				<input type="radio" name="periodicty" value="annual" {{ cs13 }}>
+				<label for="annual">Annual</label> 
+			</li>
+
+		</ul>
+		
+	</div>	
+	
+	<div class="table_background_sub">
+
+		<div class="table_background">
+	<div class="row">
+	<table id="proxies" class="display table responsive" >
+		<thead>
+			<tr >
+				<th>Series ID</th>
+				<th>Series Title</th>
+				<th class="addHeader">Add Index</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for row in indexSeriesIdTitleList %}
+			<tr>
+				<td class="series_idCol">{{ row[0] }}</td>
+				<td class="smallText"> {{ row[1] }} </td>
+				<td class="buttonCol"><button type="submit" class="btn btn-primary" name="addSeries_id"
+                            value="{{ str(row[0]) }}">Select</button></td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+	</div></div></div>
+</div>
+</form>
+<script type="text/javascript">
+    $('#proxies').DataTable();
+</script>
+{% endblock %}

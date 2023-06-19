@@ -112,3 +112,23 @@ def send_me_a_message():
 
     flash(f'Message has been sent to nick@dashanddata.com. A verification has been sent to your email as well.', 'success')
     return redirect(url_for('bp_main.home'))
+
+@bp_main.route("/DataTools")
+def dataTools():
+    return render_template('datatools/index.html')
+
+@bp_main.route("/about")
+def about_dd():
+    return render_template('main/about_dd.html')
+
+# @bp_main.route("/about_me")
+# def about_me():
+
+#     # #To Folder
+#     # static_images_people_dir = os.path.join(current_app.static_folder, 'images','people')
+#     # # #from Folder
+#     # # people_dir = current_app.config.get('PEOPLE_DIR')
+
+
+#     return render_template('main/about_me.html')
+

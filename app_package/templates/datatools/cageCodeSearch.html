@@ -1,0 +1,113 @@
+{% extends "_layout.html" %}
+
+{% block title %} CAGE Code Lookup {% endblock %}
+
+{% block main %}
+
+<div class="spacePageBorder">
+
+<h2 >{{ siteTitle }}</h2>
+</br>
+<div class="col-9">
+<p>This page uses a database created from the Defense Logistics Agencey (DLA) which stores all Commercial and Government Entity (CAGE) codes.
+The data from this site comes from the 
+	<a href="https://www.dla.mil/HQ/InformationOperations/LogisticsInformationServices/FOIAReading.aspx">DLA Electronic Reading Room</a>. Specifically, the 
+	DLA CAGECDS.txt file for company CAGE information.
+    Here the user can lookup on CAGE codes within the database.</br>
+
+</p></div>
+<form method="POST" enctype="multipart/form-data">
+	{{ csrf_token }}	
+	<div class = "cageBox ">
+		<!--Enter path to batch file: <input type="file" name="cageBatch"/>
+
+		<button type="submit" name="actionUpload" value="upload" style="margin-left: 2%"> Upload</button>
+		{{uploadFlag}}-->
+		
+		
+		{% if searchStringDict %}
+		
+		<br/>
+		<br/>
+		{% if searchStringDict %}
+			<h2>Displaying {{ resultsCount }} results on search criteria for:</h2>
+			<ul>
+			{% for i, j in searchStringDict.items() %}
+				{% if j != '' %}
+					<li>
+					{% if exactDict.get(i) %}
+						{{ i }} <u>exactly</u> matching <q><b>{{ j }}</b></q><br/>
+					{% else %}
+						{{ i }} containing <q><b>{{ j }}</b></q><br/>
+					{% endif %}
+					</li>
+				{% endif %}
+			{% endfor %}
+			</ul>
+		{% endif %}
+		
+		{% else %}
+		<h4>Enter search criteria:</h4>
+			{% for key, searchCriteria in searchDictClean.items() %}
+			<div class="searchCriteriaRows ">
+				<span class="criteriaLabel">{{ searchCriteria }}: </span>
+				<input type="text" name={{ key }}>
+				<label class="form-check-label" for={{ key + "Exact"}}>
+					<input class="form-check-input" type="checkbox" name={{ key + "Exact"}}  value="checked"> Exact match
+				</label>		
+			</div>
+			{% endfor %}
+		{% endif %}
+
+		<div class="cageButton">
+			
+			{% if searchStringDict %}
+			<button type="submit" name="searchCage" value="download" class="btn btn-primary"> Download Excel</button>
+			<span class="clearButton">
+				<button type="submit" class="btn btn-secondary" name="clearButton" value="clear">Clear</button>
+			</span>
+			{% else %}
+			<button type="submit" class="btn btn-primary" value="search" name="searchCage">SearchCAGE</button>
+			{% endif %}
+			<span class="col-2">      </span>
+		</div>
+
+	</div>
+
+</form>
+<!--copied this from security.html to build table, probably needs somehig above in headers-->
+{% if len(columnNames)>0 %}
+	<div class="table_background_sub">
+
+		<div class="table_background">
+
+			<table id="proxies" class="display table nowrap responsive text_color" style="width: 100%">
+				<thead>
+					<tr>
+						{% for header in columnNames %}
+							<th>{{header}}</th>
+						{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+				{% for row in dfResults %}
+					<tr>
+						{% for index in range(0, len(columnNames)) %}
+
+							<td><span >{{row[columnNames[index]]}}</span></td>
+
+						{% endfor %}
+					</tr>
+				{% endfor %}
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endif %}
+</div>
+<script type="text/javascript">
+    $('#proxies').DataTable();
+</script>
+
+{% endblock %}

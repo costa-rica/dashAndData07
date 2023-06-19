@@ -1,0 +1,73 @@
+{% extends "_layout.html" %}
+
+{% block title %} {{ siteTitle }} {% endblock %}
+
+{% block main %}
+
+
+
+
+<body>
+<div class="spacePageBorder getSts">
+    <h2>Search for Strict-Transport-Security (STS) codes</h2>
+    <p>This page is an application to search for the STS codes attached to web addresses.</p>
+    <p>Strict-Transport-Security codes are information attached to website url's. A
+    buddy of mine asked me if I could build an app that could loop through a bunch or urls and retrieve these status codes.
+    This is my first application for someone else. It brought me a lot of joy to be able to do something useful for someone else.
+    </p>
+
+    <p> What is STS? Good question. Here is what <a href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security"> Wikipedia</a> has to say about it.</p>
+
+
+    <form action="#" method="POST" enctype="multipart/form-data" encoding="multipart/form-data">
+        <div  class="getStsBox lightPadding"  >
+            
+            <p>Enter url's seperated by commas below and press 'Upload'</p>
+            <textarea class="form-control" rows="2" name="textareaEntry"></textarea>
+
+            <br/>
+            <p style="margin-left: 2%">OR upload xlsx or csv file with list of URL's and press 'Upload'</p>
+
+    <!--
+    <div class="form-group" >-->
+            
+            <input type="file" class="custom-file-input fileUploadInput" name="uploadedFile" id="csvFile" >
+            <label class="custom-file-label " for="csvFile"></label>
+            
+
+        </div>
+        <br/>
+        <button type="submit" class="btn btn-primary" name="button" value="makeTable" > Make Table</button>
+        <button type="submit" class="btn btn-primary" name="button" value="downloadTable"> Download </button>
+    </form>
+    {% if len(stsTableColumns)>0 %}
+    <div class='table_background_sub'>
+        <div class=" table_background">
+            <table id="proxies" class="display table nowrap responsive table-hover" style="width: 100%">
+                <thead>
+                    <tr>
+                        {% for name in stsTableColumns %}
+                            <th>{{name}}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                {% for row in stsTable %}
+                    <tr>
+                        {% for index in range(0, len(stsTableColumns)) %}
+                            <td>{{row[stsTableColumns[index]]}}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+</div>
+</body>
+<script type="text/javascript">
+    $('#proxies').DataTable();
+</script>
+{% endblock %}

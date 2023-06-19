@@ -1,0 +1,69 @@
+{% extends "_layout.html" %}
+
+{% block title %} BLS Menu {% endblock %}
+
+{% block main %}
+<section class="datatools_bls">
+    <div class="container">
+    <h1>BLS Data Navigation Menu</h1>
+    <div class="ppi_section">
+        <h3>Producer Price Indices (PPI)</h3>
+        <ul class="data_tools_list">
+            <li>
+                <div class="data_tool_div "><a href="{{ url_for('datatools_bls.blsIndustry',cs0='checked',cs5='checked', cs11='checked') }}">
+                    <div class="data_tool_title">
+                        <h2>PPI Industry/Census</h2>
+                    </div>
+                    <div class="data_tools_description">
+                        These indices are categorized according to Census NAICS codes. 
+                    </div>
+                </a></div>
+            </li>
+            <li>
+                <div class="data_tool_div "><a href="{{ url_for('datatools_bls.blsCommodity',cs0='checked',cs5='checked', cs11='checked') }}">
+                    <div class="data_tool_title">
+                        <h2>PPI Commodity/BLS</h2>
+                    </div>
+                    <div class="data_tools_description">
+                        These indices are categorized according to BLS's own categorization system.
+                    </div>
+                </a></div>
+            </li>
+    
+        </ul>
+    </div>
+
+
+    <!-- <div class="ppi_section">
+        <h3>Wages </h3>
+        <ul class="data_tools_list">
+            <li>
+                <div class="data_tool_div "><a href="{{ url_for('datatools_bls.blsIndustry') }}">
+                    <div class="data_tool_title">
+                        <h2>Average Hourly Earnings Industry/Census</h2>
+                    </div>
+                    <div class="data_tools_description">
+                        These indices are categorized according to Census NAICS codes. 
+                    </div>
+                </a></div>
+            </li>
+            <li>
+                <div class="data_tool_div "><a href="#">
+                    <div class="data_tool_title">
+                        <h2>Average Hourly Earnings Commodity/BLS</h2>
+                    </div>
+                    <div class="data_tools_description">
+                        These indices are categorized according to BLS's own categorization system.
+                    </div>
+                </a></div>
+            </li>
+    
+        </ul>
+    </div> -->
+
+
+
+</div>
+</section>
+
+{% endblock %}

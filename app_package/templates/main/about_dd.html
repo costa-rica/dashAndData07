@@ -1,0 +1,73 @@
+{% extends "_layout.html" %}
+
+{% block title %}about{% endblock %}
+
+{% block main %}
+<div class = "space_for_navbar_and_footer">
+
+
+<section class="about_main">
+    <div class="container">
+		<h1 >About Dashboards and Databases</h1>
+        <br/>
+	<div class="sectionWriting_big">
+
+        <div class="blogHeading1" ><h2>Mission</h2></div>
+
+        <div class="sectionWriting">
+            Create a process that feels as though you have a team with one more analyst that has a programming skill set so we can build the application/tool together.
+        </div>
+</div>
+<br/><br/>
+<div class="sectionWriting_big">
+    <div class="blogHeading1" ><h2>What is a dashboard and database (DD) application?</h2></div>
+    <div class="sectionWriting">
+        A simple way to think of a DD application is a well-organized excel spreadsheet. When the spreadsheet is first created it’s a clean table with highlighted column headings nicely fitted rows and easy to read text. But as the spreadsheet gets passed around your team columns/rows get added, new highlights are made, text no longer fits in each cell readable and comments in emails included in the circulation email are critical making the spreadsheet no longer a standalone document.
+        <br/><br/>
+        A DD application takes that messy spreadsheet puts everything into a database with a clean display. Then a user interface is built around the database allows users to view data items, make changes and add new information. Then view the data again in the application or build reports in excel, text, or some other media.
+        <br/><br/>
+        All this can be done with authentication and/or different user privileges so its accessible to only those desired and protected from those outside the team.
+
+    </div>
+</div>
+<br/><br/>
+
+
+<div class="sectionWriting_big">
+    <div class="blogHeading1" ><h2>Some past work</h2></div>
+    <div class="sectionWriting">
+        
+            Here are three demo applications:
+            <ul>
+                <li>
+                    <a href="https://demo.kmdashboard.dashboardsanddatabases.com"> Kinetic Metrics/ NHTSA Dashboard</a>
+                    <ul>
+                        <li>
+                            Dashboard built around a dataset provided by the National Highway Traffic Safety Administration and available at https://www-odi.nhtsa.dot.gov/downloads/.
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="https://what-sticks.com/">What Sticks Health</a>
+                    <ul>
+                        <li>
+                            Dashboard built around personal device data. The goal of this platform is to allow for users to have centralized data storage from everything from their Fitbit steps to their 23andMe gene sequence to recording how many cups of coffee they drink a day. With all the data stored in one place the user will be able to gain perspective on what sorts of things impact their health. Currently the demo shows heart rate readings from Polar device and inputs on coffee intake. This product is still under construction. 
+                        </li>
+                    </ul>
+                </li>
+
+
+            </ul>
+            All these applications have similar concepts of a user interface with a backend database. However, each application has unique functionality. Hopefully, this provides some intuition for how your project can benefit from a DD application.
+    </div>
+</div>
+
+
+
+
+
+</section>
+</div><!-- space_for_navbar_and_footer -->
+{% endblock %}
