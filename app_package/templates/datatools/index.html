@@ -4,106 +4,126 @@
 
 {% block main %}
 
-<div class = "space_for_navbar_and_footer">
-<section class="data_tools_main">
-    <div class="container">
-    <h1>Data Tools</h1>
-    <ul class="data_tools_list">
+<div class="space_for_navbar_and_footer">
+    <section class="data_tools_main">
+        <div class="container">
+            <h1>Data Tools</h1>
+            <ul class="data_tools_list">
 
 
 
 
 
-        <li>
-            <div class="data_tool_div"><a href="https://nhtsa-dash.kineticmetrics.com/">
-                <div class="data_tool_title">
-                    <div class="title_div">
-                        <h2>NHTSA Recalls and Investigations Dashboard</h2>
+                <li>
+                    <div class="data_tool_div"><a href="https://nhtsa-dash.kineticmetrics.com/">
+                            <div class="data_tool_title">
+                                <div class="title_div">
+                                    <h2>NHTSA Recalls and Investigations Dashboard</h2>
+                                </div>
+                                <div class="logo_div" id=logo_div_km>
+                                    <!-- <img id="km-logo" src="{{ url_for('bp_main.get_aux_file_from_dir', aux_dir_name='images_datatools',filename='kmLogo.png')}}" alt="KM logo"> -->
+                                    <img id="km-logo"
+                                        src="{{ url_for('bp_main.get_aux_images_datatools',dir_name='favicon_kmLogoSquare', filename='android-chrome-512x512.png')}}"
+                                        alt="KM logo">
+
+
+                                </div>
+
+                            </div><!-- data_tool_title -->
+                            <div class="data_tools_description">
+                                National Highway Traffic Safety Administration (NHTSA) lists all recalls and
+                                investigation of US
+                                automotive manufactures vehicles. This application stores all records in a database and
+                                allows users
+                                a front end to add notes, files, link records and add/remove records.<br />
+                                This is the development server application used for Kinetic Metrics. There is no
+                                proprietary data.
+                            </div>
+                        </a>
                     </div>
-                    <div class="logo_div" id=logo_div_km>
-                        <!-- <img id="km-logo" src="{{ url_for('bp_main.get_aux_file_from_dir', aux_dir_name='images_datatools',filename='kmLogo.png')}}" alt="KM logo"> -->
-                        <img id="km-logo" src="{{ url_for('bp_main.get_aux_images_datatools',dir_name='favicon_kmLogoSquare', filename='android-chrome-512x512.png')}}" alt="KM logo">
-                        
-                        
-                    </div>
-
-                </div><!-- data_tool_title -->
-                <div class="data_tools_description">
-                    National Highway Traffic Safety Administration (NHTSA) lists all recalls and investigation of US
-                     automotive manufactures vehicles. This application stores all records in a database and allows users 
-                     a front end to add notes, files, link records and add/remove records.<br/>
-                     This is the development server application used for Kinetic Metrics. There is no proprietary data.
-                </div></a>
-            </div>
-        </li>
+                </li>
 
 
 
 
 
 
-    <li>
-        <div class="data_tool_div "><a href="https://what-sticks.com">
-            <div class="data_tool_title">
-                <div class="title_div">
-                    <h2>What Sticks Health</h2>
-                </div>
-                <div class="logo_div" id="logo_div_wsh">
-                    
-                    <!-- <img id="wsh-logo" src="{{ url_for('bp_main.get_aux_file_from_dir', aux_dir_name='images_datatools',filename='tgelogo20210830_v2.png')}}" alt="CBC logo"> -->
-                    <img id="wsh-logo" src="{{ url_for('bp_main.get_aux_images_datatools',dir_name='favicon_wsLogoNoName', filename='android-chrome-512x512.png')}}" alt="WS logo">
-                </div>
-            </div>
+                <li>
+                    <div class="data_tool_div "><a href="https://what-sticks.com">
+                            <div class="data_tool_title">
+                                <div class="title_div">
+                                    <h2>What Sticks Health</h2>
+                                </div>
+                                <div class="logo_div" id="logo_div_wsh">
 
-            <div class="data_tools_description">
-                What-Sticks-Health is a health data storage platform that provides feedback to the user. 
+                                    <!-- <img id="wsh-logo" src="{{ url_for('bp_main.get_aux_file_from_dir', aux_dir_name='images_datatools',filename='tgelogo20210830_v2.png')}}" alt="CBC logo"> -->
+                                    <img id="wsh-logo"
+                                        src="{{ url_for('bp_main.get_aux_images_datatools',dir_name='favicon_wsLogoNoName', filename='android-chrome-512x512.png')}}"
+                                        alt="WS logo">
+                                </div>
+                            </div>
+
+                            <div class="data_tools_description">
+                                What-Sticks-Health is a personal data storage platform that provides feedback to the
+                                user.
+                                The goal of what-sticks is to provide crude, yet empirically driven inferences on your
+                                tendencies. As its name references we are throwing the spaghetti plate of data against
+                                the wall and seeing <i>what sticks</i>. Currently, it collects Apple Health Data and
+                                Oura Ring device ... more coming!
+
+
+                                <!-- What-Sticks-Health is a health data storage platform that provides feedback to the user. 
 				The goal of What-Sticks is unapologetically crude. We are throwing the spaghetti plate of data against 
-				the wall and seeing <i>what sticks</i>. Currently, it allows for Polar Personal device uploads... more coming soon!
-            </div>
-        </a></div>
-    </li>
+				the wall and seeing <i>what sticks</i>. Currently, it allows for Polar Personal device uploads... more coming soon! -->
+                            </div>
+                        </a></div>
+                </li>
 
-    <li>
-        <div class="data_tool_div "><a href="https://tu-rincon.com">
-            <div class="data_tool_title">
-                <div class="title_div">
-                    <h2>Tu Rincón</h2>
-                </div>
-                <div class="logo_div" >
-                    <img id="wsh-logo" src="{{ url_for('bp_main.get_aux_images_datatools',dir_name='favicon_tuRinconLogoNoName', filename='android-chrome-512x512.png')}}" alt="TR logo">
-                </div>
-            </div>
+                <li>
+                    <div class="data_tool_div "><a href="https://tu-rincon.com">
+                            <div class="data_tool_title">
+                                <div class="title_div">
+                                    <h2>Tu Rincón</h2>
+                                </div>
+                                <div class="logo_div">
+                                    <img id="wsh-logo"
+                                        src="{{ url_for('bp_main.get_aux_images_datatools',dir_name='favicon_tuRinconLogoNoName', filename='android-chrome-512x512.png')}}"
+                                        alt="TR logo">
+                                </div>
+                            </div>
 
-            <div class="data_tools_description">
-                A social media website that let's users create their own threads to share with friends and family.
-            </div>
-        </a></div>
-    </li>
-    <li>
-        <div class="data_tool_div "><a href="https://trafficmapper.kineticmetrics.com">
-            <div class="data_tool_title">
-                <div class="title_div">
-                    <h2>Traffic Mapper Demo</h2>
-                </div>
-                <div class="logo_div" >
- 
-                </div>
-            </div>
+                            <div class="data_tools_description">
+                                A social media website that let's users create their own threads to share with friends
+                                and family.
+                            </div>
+                        </a></div>
+                </li>
+                <li>
+                    <div class="data_tool_div "><a href="https://trafficmapper.kineticmetrics.com">
+                            <div class="data_tool_title">
+                                <div class="title_div">
+                                    <h2>Traffic Mapper Demo</h2>
+                                </div>
+                                <div class="logo_div">
 
-            <div class="data_tools_description">
-                This application is a proof of concept that we can use maps and display traffic patterns based on data provided by the client.
-            </div>
-        </a></div>
-    </li>
+                                </div>
+                            </div>
 
-
-
-</ul>
+                            <div class="data_tools_description">
+                                This application is a proof of concept that we can use maps and display traffic patterns
+                                based on data provided by the client.
+                            </div>
+                        </a></div>
+                </li>
 
 
 
-    </div>
-</section>
+            </ul>
+
+
+
+        </div>
+    </section>
 </div>
 
 
