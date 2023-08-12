@@ -31,7 +31,7 @@ logger_bp_error.addHandler(stream_handler)
 
 bp_error = Blueprint('bp_error', __name__)
 
-if os.environ.get('FLASK_ENV')=='prod':
+if os.environ.get('FLASK_CONFIG_TYPE')=='prod':
     @bp_error.app_errorhandler(400)
     def handle_400(err):
         logger_bp_error.info(f'@bp_error.app_errorhandler(400), err: {err}')

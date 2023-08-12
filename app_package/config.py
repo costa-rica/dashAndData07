@@ -1,7 +1,7 @@
 import os
 from dd07_config import ConfigLocal, ConfigDev, ConfigProd
 
-match os.environ.get('FLASK_ENV'):
+match os.environ.get('FLASK_CONFIG_TYPE'):
     case 'dev':
         config = ConfigDev()
         print('- dashAndData07/app_pacakge/config: Development')
@@ -12,7 +12,7 @@ match os.environ.get('FLASK_ENV'):
         config = ConfigLocal()
         print('- dashAndData07/app_pacakge/config: Local')
 
-# if os.environ.get('FLASK_ENV')=='local':
+# if os.environ.get('FLASK_CONFIG_TYPE')=='local':
 #     config = ConfigLocal()
 #     print('- dashAndData07/app_pacakge/config: Local')
 # elif os.environ.get('FLASK_CONFIG_TYPE')=='dev':
